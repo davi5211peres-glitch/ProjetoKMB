@@ -1,1 +1,11 @@
-
+CREATE DATABASE IF NOT EXISTS escola;
+USE escola;
+CREATE TABLE alunos (
+    id_autor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    nacionalidade VARCHAR(50)
+);
+CREATE TABLE sla (
+    id_livro INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL
+);
