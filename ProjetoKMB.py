@@ -80,7 +80,7 @@ def notas():
 
 def menuProf():
     while True:
-     print("bem vindo ao sistema de cadastramento aleatorio")
+     print("bem vindo ao sistema do professor")
      print("1-cadastrar\n2-lista\n3-sair")
 
      escolha = input("qual sera sua escolha: ")
@@ -102,5 +102,29 @@ def menuProf():
      else:
         print("escolha uma das opções acima\n")
 
+def menuAluno():
+    while True:
+     print("bem vindo ao sistema")
+     print("1-cadastrar\n2-lista\n3-sair")
+
+     escolha = input("qual sera sua escolha: ")
+
+
 def login():
-   
+   print("=========================")
+   print("==========LOGIN==========")
+   print("=========================")
+
+   usuario = input("usuario: ")
+   senha = input("senha: ")
+
+   if usuario == "professor":
+      menuProf()
+
+   elif usuario == "aluno":
+      menuAluno()
+
+   else:
+      print("usuario não encontrado")
+
+login()
