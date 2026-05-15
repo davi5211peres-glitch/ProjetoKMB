@@ -57,19 +57,28 @@ def lista():
     if len(alunosC) == 0:
         print("Nenhum usuário cadastrado.")
     else:
-        for i, usuario in enumerate(alunosC):
+        for i, alunos in enumerate(alunosC):
             print(f"\nUsuário {i+1}:")
-            print(f"Nome: {usuario[0]}")
-            print(f"Idade: {usuario[1]}")
-            print(f"Cidade: {usuario[2]}")
+            print(f"id: {alunos[0]}")
+            print(f"aluno: {alunos[1]}")
+            print(f"turma: {alunos[2]}")
+            print(f"curso: {alunos[3]}")
 
     return 
 
 def notas():
-    print
+    lista()
+    selectAluno = input("qual aluno você gostaria de adicionar nota: ")
+    if selectAluno not in alunosC:
+     print("escolha um aluno existente")
+     return
+    
 
 
-def menu():
+
+
+
+def menuProf():
     while True:
      print("bem vindo ao sistema de cadastramento aleatorio")
      print("1-cadastrar\n2-lista\n3-sair")
@@ -93,4 +102,5 @@ def menu():
      else:
         print("escolha uma das opções acima\n")
 
-menu()
+def login():
+   
