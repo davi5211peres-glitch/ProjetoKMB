@@ -58,11 +58,10 @@ def lista():
         print("Nenhum usuário cadastrado.")
     else:
         for i, alunos in enumerate(alunosC):
-            print(f"\nUsuário {i+1}:")
-            print(f"id: {alunos[0]}")
-            print(f"aluno: {alunos[1]}")
-            print(f"turma: {alunos[2]}")
-            print(f"curso: {alunos[3]}")
+            print(f"\naluno {i+1}:")
+            print(f"aluno: {alunos[0]}")
+            print(f"turma: {alunos[1]}")
+            print(f"curso: {alunos[2]}")
 
     return 
 
@@ -72,10 +71,6 @@ def notas():
     if selectAluno not in alunosC:
      print("escolha um aluno existente")
      return
-    
-
-
-
 
 
 def menuProf():
@@ -105,9 +100,12 @@ def menuProf():
 def menuAluno():
     while True:
      print("bem vindo ao sistema")
-     print("1-cadastrar\n2-lista\n3-sair")
+     print("1-ver atividades\n2-ver materias\n3-sair")
 
      escolha = input("qual sera sua escolha: ")
+
+     if escolha == "1":
+        print
 
 
 def login():
