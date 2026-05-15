@@ -50,7 +50,7 @@ def cadastro():
     if validar(aluno,turma,curso):
        alunos = [aluno,int(turma),curso]
        alunosC.append(alunos)
-       print("usuario cadastrado com sucesso")
+       print("\nusuario cadastrado com sucesso")
        return
 
 def lista():
@@ -72,11 +72,16 @@ def notas():
      print("escolha um aluno existente")
      return
 
+def lançarAvali():
+   print
+
+def lançarAtiv():
+   print
 
 def menuProf():
     while True:
-     print("bem vindo ao sistema do professor")
-     print("1-cadastrar\n2-lista\n3-sair")
+     print("\nbem vindo ao sistema do professor")
+     print("lançar atividade\n2-ver a lista de alunos\n")
 
      escolha = input("qual sera sua escolha: ")
 
@@ -99,19 +104,19 @@ def menuProf():
 
 def menuAluno():
     while True:
-     print("bem vindo ao sistema")
-     print("1-ver atividades\n2-ver materias\n3-sair")
+     print("\nbem vindo ao sistema")
+     print("1-se cadastrar\n2-ver materias\n3-sair")
 
      escolha = input("qual sera sua escolha: ")
 
      if escolha == "1":
-        print
+        cadastro()
 
 
 def login():
    print("=========================")
    print("==========LOGIN==========")
-   print("=========================")
+   print("=========================\n")
 
    usuario = input("usuario: ")
    senha = input("senha: ")
