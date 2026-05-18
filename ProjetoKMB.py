@@ -24,6 +24,9 @@ def validar(nome, turma, curso):
     if nome.strip() == "" or curso.strip() == "":
         print("erro no nome ou no curso encontrado")
         return False
+    if nome.str.isalpha() or curso.str.isalpha()
+         print("erro no nome ou no curso encontrado")
+         return False
     if not turma.isdigit():
         print("erro na turma foi encontrado")
         return False
@@ -127,7 +130,7 @@ def login():
   while True:  
    print("=========================")
    print("==========LOGIN==========")
-   print("=========================\n")
+   print("========================\n")
 
    usuario = input("usuario: ")
    senha = input("senha: ")
