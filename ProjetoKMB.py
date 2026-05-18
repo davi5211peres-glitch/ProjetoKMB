@@ -20,19 +20,19 @@ def MYSQLxPYTHON():
         print(f"Erro ao conectar ao MySQL:{e}")
         return None
  
-def validar(nome, turma, curso):
+def validar(nome, turma, curso, idade):
     if nome.strip() == "" or curso.strip() == "":
         print("erro no nome ou no curso encontrado")
         return False
-    if nome.str.isalpha() or curso.str.isalpha()
-         print("erro no nome ou no curso encontrado")
-         return False
-    if not turma.isdigit():
+    if not turma.isdigit() or not idade.isdigit():
         print("erro na turma foi encontrado")
         return False
     return True
 
 def cadastro():
+    conn = MYSQLxPYTHON()
+    cursor = conn.cursor()
+
     print("iniciando cadastro de aluno")
     print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
     time.sleep(1)
@@ -49,10 +49,12 @@ def cadastro():
     aluno = input("qual aluno você quer cadastrar: ")
     turma = input("qual a turma dele(a): ")
     curso = input("qual é o curso: ")
+    idade = input("qual a idade: ")
 
-    if validar(aluno,turma,curso):
-       alunos = [aluno,int(turma),curso]
+    if validar(aluno,turma,curso,idade):
+       alunos = [aluno,int(turma),curso,int(idade)]
        alunosC.append(alunos)
+
        print("\nusuario cadastrado com sucesso")
        return
 
@@ -65,6 +67,7 @@ def lista():
             print(f"aluno: {alunos[0]}")
             print(f"turma: {alunos[1]}")
             print(f"curso: {alunos[2]}")
+            print(f"idade: {alunos[3]}")
 
     return 
 
@@ -82,24 +85,25 @@ def notas():
 def menuProf():
     while True:
      print("\nbem vindo ao sistema do professor")
-     print("1-cadastrar aluno\n2-ver a lista de alunos\n3- \n4-voltar para a tela de login\n0-sair do sistema")
+     print("1-cadastrar aluno\n2-ver a lista de alunos\n3-adicionar nota\n4-voltar para a tela de login\n0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
 
      if escolha == "1":
-        cadastro()
+         cadastro()
     
      elif escolha == "2":
-        lista()
+         lista()
 
      elif escolha == "3":
-         print
+         notas()
 
     
      elif escolha == "4":
         print("voltando...")
         time.sleep(2)
         login()
+
      elif escolha == "0":
         print("saindo...")
         time.sleep(2)
@@ -121,6 +125,7 @@ def menuAluno():
         print("voltando...")
         time.sleep(2)
         login()
+
      elif escolha == "0":
         print("saindo...")
         time.sleep(2)
@@ -130,7 +135,7 @@ def login():
   while True:  
    print("=========================")
    print("==========LOGIN==========")
-   print("========================\n")
+   print("=========================\n")
 
    usuario = input("usuario: ")
    senha = input("senha: ")
