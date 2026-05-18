@@ -65,6 +65,8 @@ def lista():
 
     return 
 
+#oi
+
 def notas():
     lista()
     selectAluno = input("qual aluno você gostaria de adicionar nota: ")
@@ -72,16 +74,11 @@ def notas():
      print("escolha um aluno existente")
      return
 
-def lançarAvali():
-   print
-
-def lançarAtiv():
-   print
 
 def menuProf():
     while True:
      print("\nbem vindo ao sistema do professor")
-     print("lançar atividade\n2-ver a lista de alunos\n")
+     print("lançar atividade\n2-ver a lista de alunos\n3- \n4-voltar para a tela de login\n 0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
 
@@ -96,6 +93,10 @@ def menuProf():
 
     
      elif escolha == "4":
+        print("voltando...")
+        time.sleep(2)
+        login()
+     elif escolha == "0":
         print("saindo...")
         time.sleep(2)
         break
@@ -114,6 +115,7 @@ def menuAluno():
 
 
 def login():
+  while True:  
    print("=========================")
    print("==========LOGIN==========")
    print("=========================\n")
@@ -129,5 +131,6 @@ def login():
 
    else:
       print("usuario não encontrado")
+      break
 
 login()
