@@ -22,10 +22,10 @@ def MYSQLxPYTHON():
  
 def validar(nome, turma, curso):
     if nome.strip() == "" or curso.strip() == "":
-        print("erro no nome ou na cidade encontrado")
+        print("erro no nome ou no curso encontrado")
         return False
     if not turma.isdigit():
-        print("erro na idade foi encontrado")
+        print("erro na turma foi encontrado")
         return False
     return True
 
@@ -66,6 +66,7 @@ def lista():
     return 
 
 #oi
+#oii
 
 def notas():
     lista()
@@ -78,7 +79,7 @@ def notas():
 def menuProf():
     while True:
      print("\nbem vindo ao sistema do professor")
-     print("lançar atividade\n2-ver a lista de alunos\n3- \n4-voltar para a tela de login\n 0-sair do sistema")
+     print("1-cadastrar aluno\n2-ver a lista de alunos\n3- \n4-voltar para a tela de login\n0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
 
@@ -106,13 +107,21 @@ def menuProf():
 def menuAluno():
     while True:
      print("\nbem vindo ao sistema")
-     print("1-se cadastrar\n2-ver materias\n3-sair")
+     print("1-se cadastrar\n2-ver materias\n3-voltar para a tela de login\n0-sair")
 
      escolha = input("qual sera sua escolha: ")
 
      if escolha == "1":
         cadastro()
-
+    
+     elif escolha == "3":
+        print("voltando...")
+        time.sleep(2)
+        login()
+     elif escolha == "0":
+        print("saindo...")
+        time.sleep(2)
+        break
 
 def login():
   while True:  
