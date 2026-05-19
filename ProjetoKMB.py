@@ -1,5 +1,6 @@
 import random 
 import time
+import os
 
 delay = random.randint(1 , 6)
 alunosC = []
@@ -24,6 +25,11 @@ def validar(nome, turma, curso, idade):
     if nome.strip() == "" or curso.strip() == "":
         print("erro no nome ou no curso encontrado")
         return False
+    
+    if nome.isalpha() == "" or curso.isalpha():
+        print("erro no nome ou no curso encontrado Ç")
+        return False
+
     if not turma.isdigit() or not idade.isdigit():
         print("erro na turma foi encontrado")
         return False
@@ -36,14 +42,19 @@ def cadastro():
     print("iniciando cadastro de aluno")
     print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
     time.sleep(1)
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛⬛")
     time.sleep(delay)
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("🟦🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛")
     time.sleep(1)
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("🟦🟦🟦🟦🟦🟦🟦⬛⬛⬛⬛")
     time.sleep(3)
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("🟦🟦🟦🟦🟦🟦🟦🟦🟦⬛⬛")
     time.sleep(delay)
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
 
     aluno = input("qual aluno você quer cadastrar: ")
@@ -109,7 +120,7 @@ def menuProf():
         time.sleep(2)
         break
      else:
-        print("escolha uma das opções acima\n")
+        print("erro\n")
 
 def menuAluno():
     while True:
@@ -130,6 +141,21 @@ def menuAluno():
         print("saindo...")
         time.sleep(2)
         break
+     else:
+        print("erro")
+
+def menuSecretaria():
+   while True:
+      print("\nbem vindo ao sistema")
+      print("1-deletar aluno do sistema\n")
+
+      escolha = input("qual sera sua escolha: ")
+
+      if escolha == "1":
+         print("oi")
+
+      else:
+         print("erro\n")
 
 def login():
   while True:  
@@ -137,11 +163,14 @@ def login():
    print("==========LOGIN==========")
    print("=========================\n")
 
-   usuario = input("usuario: ")
+   usuario = input("usuario: ").lower()
    senha = input("senha: ")
 
    if usuario == "professor":
       menuProf()
+
+   elif usuario == "secretaria":
+      menuSecretaria()
 
    elif usuario == "aluno":
       menuAluno()
