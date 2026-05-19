@@ -1,7 +1,7 @@
 import random 
 import time
 import os
- 
+
 delay = random.randint(1 , 6)
 alunosC = []
 
@@ -26,7 +26,7 @@ def validar(nome, turma, curso, idade):
         print("erro no nome ou no curso encontrado")
         return False
     
-    if nome.isalpha() == "" or curso.isalpha():
+    if not nome.isalpha() or not curso.isalpha():
         print("erro no nome ou no curso encontrado Ç")
         return False
 
@@ -39,6 +39,7 @@ def cadastro():
     conn = MYSQLxPYTHON()
     cursor = conn.cursor()
 
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("iniciando cadastro de aluno")
     print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
     time.sleep(1)
