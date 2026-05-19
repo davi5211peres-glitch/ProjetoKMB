@@ -4,6 +4,7 @@ import os
 
 delay = random.randint(1 , 6)
 alunosC = []
+profC = []
 
 import mysql.connector
 from mysql.connector import Error
@@ -34,6 +35,56 @@ def validar(nome, turma, curso, idade):
         print("erro na turma foi encontrado")
         return False
     return True
+
+def validarProf(professor, turmaP, idadeP):
+    if professor.strip() == "":
+        print("erro no nome ou no curso encontrado")
+        return False
+    
+    if not professor.isalpha():
+        print("erro no nome ou no curso encontrado Ç")
+        return False
+
+    if not turmaP.isdigit() or not idadeP.isdigit():
+        print("erro na turma foi encontrado")
+        return False
+    return True
+
+
+def cadastroProfessor():
+    conn = MYSQLxPYTHON()
+    cursor = conn.cursor()
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro de professor")
+    print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
+    time.sleep(1)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛⬛")
+    time.sleep(delay)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("🟦🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛")
+    time.sleep(1)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("🟦🟦🟦🟦🟦🟦🟦⬛⬛⬛⬛")
+    time.sleep(3)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦⬛⬛")
+    time.sleep(delay)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
+
+    professor = input("nome do professor: ")
+    turmaP = input("qual a turma que ele da aula(a): ")
+    idadeP = input("qual a idade: ")
+
+    if validarProf(professor,turmaP,idadeP):
+       profs = [professor,int(turmaP),int(idadeP)]
+       profC.append(profs)
+
+       print("\nprofessor cadastrado com sucesso")
+       return
+
 
 def cadastro():
     conn = MYSQLxPYTHON()
@@ -83,6 +134,18 @@ def lista():
 
     return 
 
+def listaProf():
+    if len(profC) == 0:
+        print("Nenhum usuário cadastrado.")
+    else:
+        for i, profs in enumerate(profC):
+            print(f"\nprofessor {i+1}:")
+            print(f"aluno: {profs[0]}")
+            print(f"turma que da aula: {profs[1]}")
+            print(f"idade: {profs[3]}")
+
+    return 
+
 #oi
 #oii
 
@@ -97,20 +160,24 @@ def notas():
 def menuProf():
     while True:
      print("\nbem vindo ao sistema do professor")
-     print("1-cadastrar aluno\n2-ver a lista de alunos\n3-adicionar nota\n4-voltar para a tela de login\n0-sair do sistema")
+     print("1-cadastrar professor\n2-ver a lista de alunos\n3-ver a lista de professores\n4-adicionar nota\n5-voltar para a tela de login\n0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
 
      if escolha == "1":
-         cadastro()
+         cadastroProfessor()
     
      elif escolha == "2":
          lista()
 
      elif escolha == "3":
-         notas()
+         listaProf()
+     
 
      elif escolha == "4":
+         notas()
+
+     elif escolha == "5":
         print("voltando...")
         time.sleep(2)
         login()
@@ -122,10 +189,13 @@ def menuProf():
      else:
         print("erro\n")
 
+def materias():
+   print
+
 def menuAluno():
     while True:
      print("\nbem vindo ao sistema")
-     print("1-se cadastrar\n2-ver materias\n3-voltar para a tela de login\n0-sair")
+     print("1-se cadastrar\n2-ver materias\n3-ver os professores\n4-voltar para a tela de login\n0-sair")
 
      escolha = input("qual sera sua escolha: ")
 
@@ -135,7 +205,7 @@ def menuAluno():
      if escolha == "2":
         cadastro()
     
-     elif escolha == "3":
+     elif escolha == "4":
         print("voltando...")
         time.sleep(2)
         login()
