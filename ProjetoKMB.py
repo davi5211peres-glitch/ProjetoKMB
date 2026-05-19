@@ -110,7 +110,6 @@ def menuProf():
      elif escolha == "3":
          notas()
 
-    
      elif escolha == "4":
         print("voltando...")
         time.sleep(2)
@@ -131,6 +130,9 @@ def menuAluno():
      escolha = input("qual sera sua escolha: ")
 
      if escolha == "1":
+        cadastro()
+
+     if escolha == "2":
         cadastro()
     
      elif escolha == "3":
