@@ -146,6 +146,7 @@ def listaProf():
             print(f"nome: {profs[0]}")
             print(f"turma que da aula: {profs[1]}")
             print(f"idade: {profs[3]}")
+            print(f"materia: {profs[4]}")
             time.sleep(3)
 
     return 
