@@ -1,14 +1,14 @@
 import random 
 import time
 import os
-
+ 
 delay = random.randint(1 , 6)
 alunosC = []
 profC = []
-
+ 
 import mysql.connector
 from mysql.connector import Error
- 
+  
 def MYSQLxPYTHON():
     try:
         conexão = mysql.connector.connect(
