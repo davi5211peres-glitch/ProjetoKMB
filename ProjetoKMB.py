@@ -36,17 +36,21 @@ def validar(nome, turma, curso, idade):
         return False
     return True
 
-def validarProf(professor, turmaP, idadeP):
-    if professor.strip() == "":
-        print("erro no nome ou no curso encontrado")
+def validarProf(professor, turmaP, idadeP, materia):
+    if professor.strip() == "" or turmaP.strip() == "" or idadeP.strip() == "" or materia.strip() == "":
+        print("erro encontrado")
         return False
     
     if not professor.isalpha():
-        print("erro no nome ou no curso encontrado Ç")
+        print("erro  encontrado")
+        return False
+
+    if not materia.isdigit():
+        print("erro encontrado")
         return False
 
     if not turmaP.isdigit() or not idadeP.isdigit():
-        print("erro na turma foi encontrado")
+        print("erro encontrado")
         return False
     return True
 
@@ -75,11 +79,12 @@ def cadastroProfessor():
     print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
 
     professor = input("nome do professor: ")
-    turmaP = input("qual a turma que ele da aula(a): ")
+    turmaP = input("qual a turma que ele da aula: ")
     idadeP = input("qual a idade: ")
+    materia = input("qual é a materia que da aula: ")
 
     if validarProf(professor,turmaP,idadeP):
-       profs = [professor,int(turmaP),int(idadeP)]
+       profs = [professor,int(turmaP),int(idadeP),int(materia)]
        profC.append(profs)
 
        print("\nprofessor cadastrado com sucesso")
@@ -140,7 +145,7 @@ def listaProf():
     else:
         for i, profs in enumerate(profC):
             print(f"\nprofessor {i+1}:")
-            print(f"aluno: {profs[0]}")
+            print(f"nome: {profs[0]}")
             print(f"turma que da aula: {profs[1]}")
             print(f"idade: {profs[3]}")
 
@@ -160,20 +165,16 @@ def notas():
 def menuProf():
     while True:
      print("\nbem vindo ao sistema do professor")
-     print("1-cadastrar professor\n2-ver a lista de alunos\n3-ver a lista de professores\n4-adicionar nota\n5-voltar para a tela de login\n0-sair do sistema")
+     print("\n2-ver a lista de alunos\n3-ver a lista de professores\n4-adicionar nota\n5-voltar para a tela de login\n0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
 
-     if escolha == "1":
-         cadastroProfessor()
-    
-     elif escolha == "2":
+     if escolha == "2":
          lista()
 
      elif escolha == "3":
          listaProf()
      
-
      elif escolha == "4":
          notas()
 
@@ -195,15 +196,12 @@ def materias():
 def menuAluno():
     while True:
      print("\nbem vindo ao sistema")
-     print("1-se cadastrar\n2-ver materias\n3-ver os professores\n4-voltar para a tela de login\n0-sair")
+     print("\n2-ver materias\n3-ver os professores\n4-voltar para a tela de login\n0-sair")
 
      escolha = input("qual sera sua escolha: ")
 
-     if escolha == "1":
-        cadastro()
-
      if escolha == "2":
-        cadastro()
+        materias()
     
      elif escolha == "4":
         print("voltando...")
@@ -220,12 +218,21 @@ def menuAluno():
 def menuSecretaria():
    while True:
       print("\nbem vindo ao sistema")
-      print("1-deletar aluno do sistema\n")
+      print("1-deletar aluno do sistema\n2-deletar professor do sistema\n3-cadastrar aluno\n4-cadastrar professor")
 
       escolha = input("qual sera sua escolha: ")
 
       if escolha == "1":
          print("oi")
+
+      elif escolha == "2":
+         print("oi2")
+
+      elif escolha == "3":
+        cadastro()
+
+      elif escolha == "4":
+         cadastroProfessor()
 
       else:
          print("erro\n")
