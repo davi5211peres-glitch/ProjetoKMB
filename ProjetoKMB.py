@@ -164,7 +164,9 @@ def notas():
 
 def menuProf():
     while True:
-     print("\nbem vindo ao sistema do professor")
+     print("\n====================")
+     print("bem vindo ao sistema")
+     print("====================")
      print("\n2-ver a lista de alunos\n3-ver a lista de professores\n4-adicionar nota\n5-voltar para a tela de login\n0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
@@ -195,7 +197,9 @@ def materias():
 
 def menuAluno():
     while True:
-     print("\nbem vindo ao sistema")
+     print("\n====================")
+     print("bem vindo ao sistema")
+     print("====================")
      print("\n2-ver materias\n3-ver os professores\n4-voltar para a tela de login\n0-sair")
 
      escolha = input("qual sera sua escolha: ")
@@ -217,10 +221,12 @@ def menuAluno():
 
 def menuSecretaria():
    while True:
-      print("\nbem vindo ao sistema")
-      print("1-deletar aluno do sistema\n2-deletar professor do sistema\n3-cadastrar aluno\n4-cadastrar professor")
+      print("\n====================")
+      print("bem vindo ao sistema")
+      print("====================")
+      print("\n1-deletar aluno do sistema\n2-deletar professor do sistema\n3-cadastrar aluno\n4-cadastrar professor\n5-voltar para a tela de login\n")
 
-      escolha = input("qual sera sua escolha: ")
+      escolha = input("\nqual sera sua escolha: ")
 
       if escolha == "1":
          print("oi")
@@ -233,6 +239,11 @@ def menuSecretaria():
 
       elif escolha == "4":
          cadastroProfessor()
+
+      elif escolha == "5":
+        print("voltando...")
+        time.sleep(2)
+        login()
 
       else:
          print("erro\n")
