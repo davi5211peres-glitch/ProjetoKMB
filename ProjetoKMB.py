@@ -88,6 +88,7 @@ def cadastroProfessor():
        profC.append(profs)
 
        print("\nprofessor cadastrado com sucesso")
+       time.sleep(3)
        return
 
 
@@ -124,11 +125,13 @@ def cadastro():
        alunosC.append(alunos)
 
        print("\nusuario cadastrado com sucesso")
+       time.sleep(3)
        return
 
 def lista():
     if len(alunosC) == 0:
         print("Nenhum usuário cadastrado.")
+        time.sleep(3)
     else:
         for i, alunos in enumerate(alunosC):
             print(f"\naluno {i+1}:")
@@ -136,18 +139,21 @@ def lista():
             print(f"turma: {alunos[1]}")
             print(f"curso: {alunos[2]}")
             print(f"idade: {alunos[3]}")
+            time.sleep(3)
 
     return 
 
 def listaProf():
     if len(profC) == 0:
         print("Nenhum usuário cadastrado.")
+        time.sleep(3)
     else:
         for i, profs in enumerate(profC):
             print(f"\nprofessor {i+1}:")
             print(f"nome: {profs[0]}")
             print(f"turma que da aula: {profs[1]}")
             print(f"idade: {profs[3]}")
+            time.sleep(3)
 
     return 
 
@@ -164,6 +170,7 @@ def notas():
 
 def menuProf():
     while True:
+     os.system('cls' if os.name == 'nt' else 'clear')
      print("\n====================")
      print("bem vindo ao sistema")
      print("====================")
@@ -197,6 +204,7 @@ def materias():
 
 def menuAluno():
     while True:
+     os.system('cls' if os.name == 'nt' else 'clear')
      print("\n====================")
      print("bem vindo ao sistema")
      print("====================")
@@ -208,7 +216,7 @@ def menuAluno():
         materias()
     
      elif escolha == "4":
-        print("voltando...")
+        print("\nvoltando...")
         time.sleep(2)
         login()
 
@@ -221,6 +229,7 @@ def menuAluno():
 
 def menuSecretaria():
    while True:
+      os.system('cls' if os.name == 'nt' else 'clear')
       print("\n====================")
       print("bem vindo ao sistema")
       print("====================")
@@ -250,6 +259,7 @@ def menuSecretaria():
 
 def login():
   while True:  
+   os.system('cls' if os.name == 'nt' else 'clear')
    print("=========================")
    print("==========LOGIN==========")
    print("=========================\n")
