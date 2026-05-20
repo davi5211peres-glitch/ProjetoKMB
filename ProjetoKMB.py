@@ -37,28 +37,33 @@ def validar(nome, turma, curso, idade):
     return True
 
 def validarProf(professor, turmaP, idadeP, materia):
-    if not professor.strip() == "" or not turmaP.strip() == "" or not idadeP.strip() == "" or not materia.strip() == "":
-        print("erro encontrado (1)")
-        return False
+
+    if turmaP.strip() == "":
+       print("erro encontrado (2)")
+       return False
+    
+    if idadeP.strip() == "":
+       print("erro encontrado (3)")
+       return False
+    
+    if materia.strip() == "":
+       print("erro encontrado (4)")
+       return False
     
     if not professor.isalpha():
-        print("erro  encontrado (2)")
+        print("erro  encontrado (5)")
         return False
 
-    if not materia.isdigit():
-        print("erro encontrado (3)")
+    if not materia.isalpha():
+        print("erro encontrado (6)")
         return False
 
     if not turmaP.isdigit() or not idadeP.isdigit():
-        print("erro encontrado (4)")
+        print("erro encontrado (7)")
         return False
     return True
 
-
-def cadastroProfessor():
-    conn = MYSQLxPYTHON()
-    cursor = conn.cursor()
-
+def loading():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("iniciando cadastro de professor")
     print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
@@ -78,13 +83,19 @@ def cadastroProfessor():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
 
+def cadastroProfessor():
+    conn = MYSQLxPYTHON()
+    cursor = conn.cursor()
+
+    loading()
+
     professor = input("nome do professor: ")
     turmaP = input("qual a turma que ele da aula: ")
     idadeP = input("qual a idade: ")
     materia = input("qual é a materia que da aula: ")
 
     if validarProf(professor,turmaP,idadeP,materia):
-       profs = [professor,int(turmaP),int(idadeP),int(materia)]
+       profs = [professor,int(turmaP),int(idadeP),materia]
        profC.append(profs)
 
        print("\nprofessor cadastrado com sucesso")
@@ -95,24 +106,7 @@ def cadastro():
     conn = MYSQLxPYTHON()
     cursor = conn.cursor()
 
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro de aluno")
-    print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(1)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("🟦🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(1)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("🟦🟦🟦🟦🟦🟦🟦⬛⬛⬛⬛")
-    time.sleep(3)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
+    loading()
 
     aluno = input("qual aluno você quer cadastrar: ")
     turma = input("qual a turma dele(a): ")
