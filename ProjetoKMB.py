@@ -1,7 +1,7 @@
 import random 
 import time
 import os
-
+  
 delay = random.randint(1 , 6)
 alunosC = []
 profC = []
