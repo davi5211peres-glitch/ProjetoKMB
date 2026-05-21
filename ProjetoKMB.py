@@ -38,6 +38,10 @@ def validar(nome, curso, idade):
 
 def validarProf(professor, turmaP, idadeP, materia):
 
+    if professor.strip() == "":
+       print("erro encontrado (2)")
+       return False
+
     if turmaP.strip() == "":
        print("erro encontrado (2)")
        return False
@@ -65,23 +69,31 @@ def validarProf(professor, turmaP, idadeP, materia):
 
 def loading():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro de professor")
+    print("iniciando cadastro")
     print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(1)
+    time.sleep(delay)
     os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
     print("🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛⬛")
     time.sleep(delay)
     os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
     print("🟦🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(1)
+    time.sleep(delay)
     os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
     print("🟦🟦🟦🟦🟦🟦🟦⬛⬛⬛⬛")
-    time.sleep(3)
+    time.sleep(delay)
     os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
     print("🟦🟦🟦🟦🟦🟦🟦🟦🟦⬛⬛")
     time.sleep(delay)
     os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
     print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
+    time.sleep(2)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("====================")
 
 def cadastroProfessor():
     conn = MYSQLxPYTHON()
@@ -99,6 +111,8 @@ def cadastroProfessor():
        profC.append(profs)
 
        print("\nprofessor cadastrado com sucesso")
+       print("====================")
+       time.sleep(3)
        return
 
 
@@ -172,6 +186,7 @@ def notas():
 
 def menuProf():
     while True:
+     os.system('cls' if os.name == 'nt' else 'clear')
      print("\n====================")
      print("bem vindo ao sistema")
      print("====================")
@@ -205,6 +220,7 @@ def materias():
 
 def menuAluno():
     while True:
+     os.system('cls' if os.name == 'nt' else 'clear')
      print("\n====================")
      print("bem vindo ao sistema")
      print("====================")
@@ -229,6 +245,7 @@ def menuAluno():
 
 def menuSecretaria():
    while True:
+      os.system('cls' if os.name == 'nt' else 'clear')
       print("\n====================")
       print("bem vindo ao sistema")
       print("====================")
