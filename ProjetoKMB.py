@@ -22,17 +22,17 @@ def MYSQLxPYTHON():
         print(f"Erro ao conectar ao MySQL:{e}")
         return None
  
-def validar(nome, turma, curso, idade):
+def validar(nome, curso, idade):
     if nome.strip() == "" or curso.strip() == "":
         print("erro no nome ou no curso encontrado")
         return False
     
-    if not nome.isalpha() or not curso.isalpha():
+    if not nome.replace(" ", "").isalpha() or not curso.replace(" ", "").isalpha():
         print("erro no nome ou no curso encontrado Ç")
         return False
 
-    if not turma.isdigit() or not idade.isdigit():
-        print("erro na turma foi encontrado")
+    if not idade.isdigit():
+        print("erro na idade foi encontrado")
         return False
     return True
 
@@ -102,39 +102,47 @@ def cadastroProfessor():
        return
 
 
-def cadastro():
+def cadastro(nome, idade, curso):
     conn = MYSQLxPYTHON()
     cursor = conn.cursor()
 
     loading()
 
-    aluno = input("qual aluno você quer cadastrar: ")
-    turma = input("qual a turma dele(a): ")
-    curso = input("qual é o curso: ")
-    idade = input("qual a idade: ")
+    sql = "INSERT INTO alunos (nome, idade, curso) VALUES (%s, %s, %s)"
 
-    if validar(aluno,turma,curso,idade):
-       alunos = [aluno,int(turma),curso,int(idade)]
-       alunosC.append(alunos)
+    try:
+        validar(nome,idade,curso)
+        cursor.execute(sql, (nome,idade,curso))
+        conn.commit()
+        print("\nusuario cadastrado com sucesso")
+        time.sleep(3)
+        return
+    except ValueError:
+        print("erro no cadastro")
+        time.sleep(3)
+        return
+    finally:
+       cursor.close()
+       conn.close()
 
-       print("\nusuario cadastrado com sucesso")
+def lista():
+    conn = MYSQLxPYTHON()
+    cursor = conn.cursor()
+
+    sql = "SELECT * FROM alunos"
+
+    cursor.execute(sql)
+    resultados = cursor.fetchall()
+
+    if not resultados:
+       print("nenhum aluno cadastrado")
        time.sleep(3)
        return
 
-def lista():
-    if len(alunosC) == 0:
-        print("Nenhum usuário cadastrado.")
-        time.sleep(3)
-    else:
-        for i, alunos in enumerate(alunosC):
-            print(f"\naluno {i+1}:")
-            print(f"aluno: {alunos[0]}")
-            print(f"turma: {alunos[1]}")
-            print(f"curso: {alunos[2]}")
-            print(f"idade: {alunos[3]}")
-            time.sleep(3)
-
-    return 
+    for aluno in resultados:
+       print(f"ID: {aluno[0]} || Nome: {aluno[1]} || Idade: {aluno[2]} || Curso: {aluno[3]}")
+       time.sleep(3)
+       return
 
 def listaProf():
     if len(profC) == 0:
@@ -235,7 +243,10 @@ def menuSecretaria():
          print("oi2")
 
       elif escolha == "3":
-        cadastro()
+         nomeA = input("qual aluno você quer cadastrar: ")
+         curso = input("qual é o curso: ")
+         idade = input("qual a idade: ")
+         cadastro(nomeA,curso,idade)
 
       elif escolha == "4":
          cadastroProfessor()
