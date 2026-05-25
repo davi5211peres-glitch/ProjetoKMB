@@ -22,25 +22,24 @@ def MYSQLxPYTHON():
         print(f"Erro ao conectar ao MySQL:{e}")
         return None
  
-def validar(nome, curso, idade):
+def validar(nome,idade,curso):
     if nome.strip() == "" or curso.strip() == "":
         print("erro no nome ou no curso encontrado")
         return False
     
-    if not nome.replace(" ", "").isalpha() or not curso.replace(" ", "").isalpha():
-        print("erro no nome ou no curso encontrado Ç")
-        return False
-
     if not idade.isdigit():
         print("erro na idade foi encontrado")
+        return False
+
+    if not nome.replace(" ", "").isalpha() or not curso.replace(" ", "").isalpha():
+        print("erro no nome ou no curso encontrado")
         return False
     return True
 
 def validarProf(professor, turmaP, idadeP, materia):
 
     if professor.strip() == "":
-       print("erro encontrado (2)")
-       return False
+       print("erro encontrado (1)")
 
     if turmaP.strip() == "":
        print("erro encontrado (2)")
@@ -91,7 +90,6 @@ def loading():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("iniciando cadastro")
     print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
-    time.sleep(2)
     os.system('cls' if os.name == 'nt' else 'clear')
     print("====================")
 
@@ -116,7 +114,7 @@ def cadastroProfessor():
        return
 
 
-def cadastro(nome, idade, curso):
+def cadastro(nome,idade,curso):
     conn = MYSQLxPYTHON()
     cursor = conn.cursor()
 
@@ -125,14 +123,14 @@ def cadastro(nome, idade, curso):
     sql = "INSERT INTO alunos (nome, idade, curso) VALUES (%s, %s, %s)"
 
     try:
-        validar(nome,idade,curso)
-        cursor.execute(sql, (nome,idade,curso))
-        conn.commit()
-        print("\nusuario cadastrado com sucesso")
-        time.sleep(3)
-        return
-    except ValueError:
-        print("erro no cadastro")
+        if validar(nome,idade,curso):
+            cursor.execute(sql, (nome,idade,curso))
+            conn.commit()
+            print("\nusuario cadastrado com sucesso")
+            time.sleep(3)
+            return
+    except Error as e:
+        print(f"erro no cadastro: {e}")
         time.sleep(3)
         return
     finally:
@@ -183,6 +181,26 @@ def notas():
      print("escolha um aluno existente")
      return
 
+def deletarAluno(id_deletar):
+   conn = MYSQLxPYTHON()
+   if conn is None: return
+
+   cursor = conn.cursor()
+   sql = "DELETE FROM alunos WHERE id_aluno = %s"
+
+   try:
+      cursor.execute(sql, (id_deletar,))
+      conn.commit()
+
+      if cursor.rowcount > 0:
+         print("aluno deletado")
+      else:
+         print("nenhum aluno com esse ID")
+   except Error as e:
+      print(f"erro ao deletar aluno: {e}")
+   finally:
+      cursor.close()
+      conn.close()
 
 def menuProf():
     while True:
@@ -254,16 +272,24 @@ def menuSecretaria():
       escolha = input("\nqual sera sua escolha: ")
 
       if escolha == "1":
-         print("oi")
+         lista()
+         id_deletar = input("digite o ID do aluno: ")
+         if id_deletar.isdigit():
+            deletarAluno(int(id_deletar))
+         else:
+            print("digite um ID válido")
 
       elif escolha == "2":
          print("oi2")
 
       elif escolha == "3":
-         nomeA = input("qual aluno você quer cadastrar: ")
-         curso = input("qual é o curso: ")
+         nome = input("qual aluno você quer cadastrar: ")
          idade = input("qual a idade: ")
-         cadastro(nomeA,curso,idade)
+         curso = input("qual é o curso: ")
+         if idade.isdigit():
+            cadastro(nome,idade,curso)
+         else:
+            print("idade precisa ser número")
 
       elif escolha == "4":
          cadastroProfessor()
