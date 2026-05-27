@@ -2,9 +2,9 @@ import random
 import time
 import os
 from def_MYSQLxPYTHON import MYSQLxPYTHON
-from def_loading import loading 
-from defs_validacoes import validation, validarProf
-from defs_cadastros import cadastro, cadastroProfessor
+from def_loading import *
+from defs_validacoes import *
+from defs_cadastros import *
 
 delay = random.randint(1 , 6)
 alunosC = []
@@ -96,7 +96,7 @@ def listaProf():
     return 
 
 #oi
-#oii
+#marca de presença
 
 def notas():
     lista()
@@ -105,23 +105,37 @@ def notas():
      print("escolha um aluno existente")
      return
 
-def deletarAluno(id_deletar):
+def deletarAluno():
    conn = MYSQLxPYTHON()
    if conn is None: return
 
    cursor = conn.cursor()
+
+   id_deletar = input("digite o ID do aluno: ")
+
+   if not id_deletar.isdigit():
+      print("digite um ID válido")
+      time.sleep(3)
+      return
+
    sql = "DELETE FROM alunos WHERE id_aluno = %s"
 
    try:
-      cursor.execute(sql, (id_deletar,))
+      cursor.execute(sql)
       conn.commit()
 
       if cursor.rowcount > 0:
          print("aluno deletado")
+         time.sleep(3)
+         return
       else:
          print("nenhum aluno com esse ID")
+         time.sleep(3)
+         return
    except Error as e:
       print(f"erro ao deletar aluno: {e}")
+      time.sleep(3)
+      return
    finally:
       cursor.close()
       conn.close()
@@ -216,11 +230,7 @@ def menuSecretaria():
 
       if escolha == "1":
          lista()
-         id_deletar = input("digite o ID do aluno: ")
-         if id_deletar.isdigit():
-            deletarAluno(int(id_deletar))
-         else:
-            print("digite um ID válido")
+         deletarAluno()
 
       elif escolha == "2":
          print("oi2")
