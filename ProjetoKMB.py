@@ -1,14 +1,14 @@
 import random 
 import time
 import os
-  
+   
 delay = random.randint(1 , 6)
 alunosC = []
 profC = []
-
+ 
 import mysql.connector
 from mysql.connector import Error
- 
+  
 def MYSQLxPYTHON():
     try:
         conexão = mysql.connector.connect(
@@ -16,12 +16,12 @@ def MYSQLxPYTHON():
             user = "root",
             password = "Senac2026",
             database = "escola",
-        )
+        ) 
         return conexão
     except Error as e:
         print(f"Erro ao conectar ao MySQL:{e}")
         return None
- 
+  
 def validar(nome,idade,curso):
     if nome.strip() == "" or curso.strip() == "":
         print("erro no nome ou no curso encontrado")
@@ -35,15 +35,15 @@ def validar(nome,idade,curso):
         print("erro no nome ou no curso encontrado")
         return False
     return True
-
+ 
 def validarProf(professor, turmaP, idadeP, materia):
-
+  
     if professor.strip() == "":
        print("erro encontrado (1)")
-
+ 
     if turmaP.strip() == "":
        print("erro encontrado (2)")
-       return False
+       return False 
     
     if idadeP.strip() == "":
        print("erro encontrado (3)")
