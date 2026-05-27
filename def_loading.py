@@ -1,0 +1,31 @@
+import os
+import time
+import random
+delay = random.randint(1, 6)
+
+def loading():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
+    print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
+    time.sleep(delay)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
+    print("🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛⬛")
+    time.sleep(delay)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
+    print("🟦🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛")
+    time.sleep(delay)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
+    print("🟦🟦🟦🟦🟦🟦🟦⬛⬛⬛⬛")
+    time.sleep(delay)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
+    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦⬛⬛")
+    time.sleep(delay)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("iniciando cadastro")
+    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("====================")
