@@ -23,17 +23,26 @@ def MYSQLxPYTHON():
         return None
   
 def validar(nome,idade,curso):
-    if nome.strip() == "" or curso.strip() == "":
-        print("erro no nome ou no curso encontrado")
+    if nome.strip() == "":
+        print("erro encontrado (1)")
         return False
     
+    if curso.strip() == "":
+       print("erro encontrado (2)")
+       return False
+    
     if not idade.isdigit():
-        print("erro na idade foi encontrado")
+        print("erro encontrado (3)")
         return False
 
-    if not nome.replace(" ", "").isalpha() or not curso.replace(" ", "").isalpha():
-        print("erro no nome ou no curso encontrado")
+    if not nome.replace(" ", "").isalpha():
+        print("erro encontrado (4)")
         return False
+    
+    if not curso.replace(" ", "").isalpha():
+       print("erro encontrado (5)")
+       return False
+    
     return True
  
 def validarProf(professor, turmaP, idadeP, materia):
@@ -54,7 +63,7 @@ def validarProf(professor, turmaP, idadeP, materia):
        return False
     
     if not professor.isalpha():
-        print("erro  encontrado (5)")
+        print("erro encontrado (5)")
         return False
 
     if not materia.isalpha():
@@ -209,7 +218,7 @@ def menuProf():
      print("bem vindo ao sistema")
      print("====================\n")
 
-     print("1-")
+     print("1-mudar nota")
      print("2-ver a lista de alunos")
      print("3-ver a lista de professores")
      print("4-adicionar nota")
@@ -217,6 +226,9 @@ def menuProf():
      print("0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
+
+     if escolha == "1":
+         print
 
      if escolha == "2":
          lista()
@@ -281,7 +293,9 @@ def menuSecretaria():
       print("2-deletar professor do sistema")
       print("3-cadastrar aluno")
       print("4-cadastrar professor")
-      print("5-voltar para a tela de login")
+      print("5-fazer alteração na conta do aluno")
+      print("5-fazer alteração na conta do professor")
+      print("7-voltar para a tela de login")
 
       escolha = input("\nqual sera sua escolha: ")
 
