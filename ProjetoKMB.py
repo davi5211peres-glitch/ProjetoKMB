@@ -122,7 +122,7 @@ def cadastroProfessor():
        time.sleep(3)
        return
 
-
+ 
 def cadastro(nome,idade,curso):
     conn = MYSQLxPYTHON()
     cursor = conn.cursor()
@@ -145,13 +145,13 @@ def cadastro(nome,idade,curso):
     finally:
        cursor.close()
        conn.close()
-
+ 
 def lista():
     conn = MYSQLxPYTHON()
     cursor = conn.cursor()
 
     sql = "SELECT * FROM alunos"
-
+ 
     cursor.execute(sql)
     resultados = cursor.fetchall()
 
@@ -177,7 +177,7 @@ def listaProf():
             print(f"idade: {profs[2]}")
             print(f"materia: {profs[3]}")
             time.sleep(3)
-
+  
     return 
 
 #oi
