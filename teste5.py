@@ -1,107 +1,17 @@
-
 import random 
 import time
 import os
-   
+from def_MYSQLxPYTHON import MYSQLxPYTHON
+from def_loading import loading 
+from defs_validacoes import validation, validarProf
+from defs_cadastros import cadastro, cadastroProfessor
+
 delay = random.randint(1 , 6)
 alunosC = []
 profC = []
  
 import mysql.connector
 from mysql.connector import Error
-  
-def MYSQLxPYTHON():
-    try:
-        conexão = mysql.connector.connect(
-            host = "127.0.0.1",
-            user = "root",
-            password = "Senac2026",
-            database = "escola",
-        ) 
-        return conexão
-    except Error as e:
-        print(f"Erro ao conectar ao MySQL:{e}")
-        return None
-  
-def validar(nome,idade,curso):
-    if nome.strip() == "":
-        print("erro encontrado (1)")
-        return False
-    
-    if curso.strip() == "":
-       print("erro encontrado (2)")
-       return False
-    
-    if not idade.isdigit():
-        print("erro encontrado (3)")
-        return False
-
-    if not nome.replace(" ", "").isalpha():
-        print("erro encontrado (4)")
-        return False
-    
-    if not curso.replace(" ", "").isalpha():
-       print("erro encontrado (5)")
-       return False
-    
-    return True
- 
-def validarProf(professor, turmaP, idadeP, materia):
-  
-    if professor.strip() == "":
-       print("erro encontrado (1)")
- 
-    if turmaP.strip() == "":
-       print("erro encontrado (2)")
-       return False 
-    
-    if idadeP.strip() == "":
-       print("erro encontrado (3)")
-       return False
-    
-    if materia.strip() == "":
-       print("erro encontrado (4)")
-       return False
-    
-    if not professor.isalpha():
-        print("erro encontrado (5)")
-        return False
-
-    if not materia.isalpha():
-        print("erro encontrado (6)")
-        return False
-
-    if not turmaP.isdigit() or not idadeP.isdigit():
-        print("erro encontrado (7)")
-        return False
-    return True
-
-def loading():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦🟦🟦🟦🟦⬛⬛⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("====================")
 
 def cadastroProfessor():
     conn = MYSQLxPYTHON()
@@ -124,7 +34,7 @@ def cadastroProfessor():
        return
 
 
-def cadastro(nome,idade,curso):
+def cadastro():
     conn = MYSQLxPYTHON()
     cursor = conn.cursor()
 
@@ -137,7 +47,7 @@ def cadastro(nome,idade,curso):
     curso = input("qual é o curso: ")
 
     try:
-        if validar(nome,idade,curso):
+        if validation(nome,idade,curso):
             cursor.execute(sql, (nome,idade,curso))
             conn.commit()
             print("\nusuario cadastrado com sucesso")
