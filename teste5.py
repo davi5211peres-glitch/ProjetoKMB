@@ -1,7 +1,7 @@
 import random 
 import time
 import os
-from def_MYSQLxPYTHON import MYSQLxPYTHON
+from MYSQLxPYTHON import MYSQLxPYTHON
 from def_loading import *
 from defs_validacoes import *
 from defs_cadastros import *
