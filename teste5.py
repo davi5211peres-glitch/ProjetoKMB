@@ -1,73 +1,23 @@
 import random 
 import time
 import os
-from MYSQLxPYTHON import MYSQLxPYTHON
+from MYSQLxPYTHON import *
 from def_loading import *
 from defs_validacoes import *
 from defs_cadastros import *
 
-delay = random.randint(1 , 6)
+delay = random.randint(1 , 2)
 alunosC = []
 profC = []
  
 import mysql.connector
 from mysql.connector import Error
 
-def cadastroProfessor():
-    conn = MYSQLxPYTHON()
-    cursor = conn.cursor()
-
-    loading()
-
-    professor = input("nome do professor: ")
-    turmaP = input("qual a turma que ele da aula: ")
-    idadeP = input("qual a idade: ")
-    materia = input("qual é a materia que da aula: ")
-
-    if validarProf(professor,turmaP,idadeP,materia):
-       profs = [professor,int(turmaP),int(idadeP),materia]
-       profC.append(profs)
-
-       print("\nprofessor cadastrado com sucesso")
-       print("====================")
-       time.sleep(3)
-       return
-
-
-def cadastro():
-    conn = MYSQLxPYTHON()
-    cursor = conn.cursor()
-
-    loading()
-
-    sql = "INSERT INTO alunos (nome, idade, curso) VALUES (%s, %s, %s)"
-
-    nome = input("qual aluno você quer cadastrar: ")
-    idade = input("qual a idade: ")
-    curso = input("qual é o curso: ")
-
-    try:
-        if validation(nome,idade,curso):
-            cursor.execute(sql, (nome,idade,curso))
-            conn.commit()
-            print("\nusuario cadastrado com sucesso")
-            time.sleep(3)
-            return
-    except Error as e:
-        print(f"erro no cadastro: {e}")
-        time.sleep(3)
-        return
-    finally:
-       cursor.close()
-       conn.close()
-
 def lista():
-    conn = MYSQLxPYTHON()
+    conn = conectar()
     cursor = conn.cursor()
 
-    sql = "SELECT * FROM alunos"
-
-    cursor.execute(sql)
+    cursor.execute("SELECT * FROM alunos")
     resultados = cursor.fetchall()
 
     if not resultados:
@@ -76,7 +26,7 @@ def lista():
        return
 
     for aluno in resultados:
-       print(f"ID: {aluno[0]} || Nome: {aluno[1]} || Idade: {aluno[2]} || Curso: {aluno[3]}")
+       print(f"\nID: {aluno[0]} || Nome: {aluno[1]} || Idade: {aluno[2]} || Curso: {aluno[3]}*")
        time.sleep(3)
        return
 
@@ -106,9 +56,7 @@ def notas():
      return
 
 def deletarAluno():
-   conn = MYSQLxPYTHON()
-   if conn is None: return
-
+   conn = conectar()
    cursor = conn.cursor()
 
    id_deletar = input("digite o ID do aluno: ")
@@ -118,10 +66,8 @@ def deletarAluno():
       time.sleep(3)
       return
 
-   sql = "DELETE FROM alunos WHERE id_aluno = %s"
-
    try:
-      cursor.execute(sql)
+      cursor.execute("DELETE FROM alunos WHERE id_aluno = %s",(id_deletar,))
       conn.commit()
 
       if cursor.rowcount > 0:
@@ -134,7 +80,7 @@ def deletarAluno():
          return
    except Error as e:
       print(f"erro ao deletar aluno: {e}")
-      time.sleep(3)
+      time.sleep(10)
       return
    finally:
       cursor.close()

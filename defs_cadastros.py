@@ -1,12 +1,12 @@
 import time
 import mysql.connector
 from mysql.connector import Error
-from def_MYSQLxPYTHON import MYSQLxPYTHON
-from def_loading import loading
-from defs_validacoes import validation, validarProf
+from MYSQLxPYTHON import *
+from def_loading import *
+from defs_validacoes import *
 
 def cadastroProfessor():
-    conn = MYSQLxPYTHON()
+    conn = conectar()
     cursor = conn.cursor()
 
     loading()
@@ -26,7 +26,7 @@ def cadastroProfessor():
 
 
 def cadastro():
-    conn = MYSQLxPYTHON()
+    conn = conectar()
     cursor = conn.cursor()
 
     loading()

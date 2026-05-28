@@ -31,5 +31,6 @@ def loading():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("iniciando cadastro")
     print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
+    time.sleep(0.5)
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("==============
+    print("==============")

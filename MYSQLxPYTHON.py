@@ -1,7 +1,32 @@
 import mysql.connector
 from mysql.connector import Error
 
-def MYSQLxPYTHON():
+    
+conn = mysql.connector.connect(
+            host = "127.0.0.1",
+            user = "root",
+            password = "Senac2026",
+)
+
+cursor = conn.cursor()
+
+cursor.execute("""
+    CREATE DATABASE IF NOT EXISTS escola;
+    """)
+
+cursor.execute("USE escola")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS alunos (
+        id_aluno INT AUTO_INCREMENT PRIMARY KEY,
+        nome VARCHAR(100) NOT NULL,
+        idade INT NOT NULL,
+        curso VARCHAR(50) NOT NULL
+    );
+""")
+
+
+def conectar():
     try:
         conexão = mysql.connector.connect(
             host = "127.0.0.1",
