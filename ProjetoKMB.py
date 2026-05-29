@@ -207,8 +207,14 @@ def menuProf():
      os.system('cls' if os.name == 'nt' else 'clear')
      print("\n====================")
      print("bem vindo ao sistema")
-     print("====================")
-     print("\n2-ver a lista de alunos\n3-ver a lista de professores\n4-adicionar nota\n5-voltar para a tela de login\n0-sair do sistema")
+     print("====================\n")
+
+     print("1-")
+     print("2-ver a lista de alunos")
+     print("3-ver a lista de professores")
+     print("4-adicionar nota")
+     print("5-voltar para a tela de login")
+     print("0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
 
@@ -241,8 +247,12 @@ def menuAluno():
      os.system('cls' if os.name == 'nt' else 'clear')
      print("\n====================")
      print("bem vindo ao sistema")
-     print("====================")
-     print("\n2-ver materias\n3-ver os professores\n4-voltar para a tela de login\n0-sair")
+     print("====================\n")
+     print("1-")
+     print("2-ver materias")
+     print("3-ver os professores")
+     print("4-voltar para a tela de login")
+     print("0-sair")
 
      escolha = input("qual sera sua escolha: ")
 
@@ -266,8 +276,12 @@ def menuSecretaria():
       os.system('cls' if os.name == 'nt' else 'clear')
       print("\n====================")
       print("bem vindo ao sistema")
-      print("====================")
-      print("\n1-deletar aluno do sistema\n2-deletar professor do sistema\n3-cadastrar aluno\n4-cadastrar professor\n5-voltar para a tela de login\n")
+      print("====================\n")
+      print("1-deletar aluno do sistema")
+      print("2-deletar professor do sistema")
+      print("3-cadastrar aluno")
+      print("4-cadastrar professor")
+      print("5-voltar para a tela de login")
 
       escolha = input("\nqual sera sua escolha: ")
 
