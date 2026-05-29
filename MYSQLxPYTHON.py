@@ -47,3 +47,21 @@ def conectar():
     except Error as e:
         print(f"Erro ao conectar ao MySQL:{e}")
         return None
+    
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS notas(
+        id_notas INT AUTO_INCREMENT PRIMARY KEY,
+        notas float NOT NULL,
+        materia VARCHAR(50) NOT NULL,
+        fk_idaluno INT NOT NULL,
+        fk_idprofessor INT NOT NULL,
+        
+        FOREIGN KEY (fk_idaluno) 
+            REFERENCES alunos(id_aluno)
+            ON DELETE CASCADE, 
+        
+        FOREIGN KEY (fk_idprofessor) 
+            REFERENCES professores(id_professor)
+            ON DELETE CASCADE
+    );
+""")
