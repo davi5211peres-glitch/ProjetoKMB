@@ -1,7 +1,7 @@
 import os
 import time
 import random
-delay = random.randint(1, 6)
+delay = random.randint(1, 2)
 
 def loading():
     os.system('cls' if os.name == 'nt' else 'clear')

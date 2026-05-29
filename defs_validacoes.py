@@ -28,14 +28,14 @@ def validation(nome,idade,curso):
     
     return True
  
-def validarProf(professor, turmaP, idadeP, materia):
+def validarProf(professor, idadeP, materia, cursoP):
   
     if professor.strip() == "":
        print("erro encontrado (1)")
        time.sleep(3)
        return
  
-    if turmaP.strip() == "":
+    if cursoP.strip() == "":
        print("erro encontrado (2)")
        time.sleep(3)
        return False 
@@ -50,18 +50,23 @@ def validarProf(professor, turmaP, idadeP, materia):
        time.sleep(3)
        return False
     
-    if not professor.isalpha():
+    if not professor.replace(" ", "").isalpha():
         print("erro encontrado (5)")
         time.sleep(3)
         return False
 
-    if not materia.isalpha():
+    if not materia.replace(" ", "").isalpha():
         print("erro encontrado (6)")
         time.sleep(3)
         return False
 
-    if not turmaP.isdigit() or not idadeP.isdigit():
+    if not cursoP.replace(" ", "").isalpha():
         print("erro encontrado (7)")
+        time.sleep(3)
+        return False
+    
+    if not idadeP.isdigit():
+        print("erro encontrado (8)")
         time.sleep(3)
         return False
     return True

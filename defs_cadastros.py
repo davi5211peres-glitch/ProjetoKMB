@@ -12,17 +12,27 @@ def cadastroProfessor():
     loading()
 
     professor = input("nome do professor: ")
-    turmaP = input("qual a turma que ele da aula: ")
     idadeP = input("qual a idade: ")
     materia = input("qual é a materia que da aula: ")
+    cursoP = input("qual a turma que ele da aula: ")
 
-    if validarProf(professor,turmaP,idadeP,materia):
-       profs = [professor,int(turmaP),int(idadeP),materia]
+    sql = "INSERT INTO professores (nome, idade, materia, curso) VALUES (%s, %s, %s, %s)"
 
-       print("\nprofessor cadastrado com sucesso")
-       print("====================")
-       time.sleep(3)
-       return
+    try:
+        if validarProf(professor,cursoP,idadeP,materia):
+            cursor.execute(sql, (professor,idadeP,materia,cursoP))
+            conn.commit()
+            print("\nprofessor cadastrado com sucesso")
+            print("====================")
+            time.sleep(3)
+            return
+    except Error as e:
+        print(f"erro no cadastro: {e}")
+        time.sleep(3)
+        return
+    finally:
+        cursor.close()
+        conn.close()
 
 
 def cadastro():
