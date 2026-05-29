@@ -25,6 +25,15 @@ cursor.execute("""
     );
 """)
 
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS professores (
+        id_professor INT AUTO_INCREMENT PRIMARY KEY,
+        nome VARCHAR(100) NOT NULL,
+        idade INT NOT NULL,
+        materia VARCHAR(50) NOT NULL,
+        curso VARCHAR(200) NOT NULL
+    );
+""")
 
 def conectar():
     try:

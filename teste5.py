@@ -26,9 +26,10 @@ def lista():
        return
 
     for aluno in resultados:
-       print(f"\nID: {aluno[0]} || Nome: {aluno[1]} || Idade: {aluno[2]} || Curso: {aluno[3]}*")
-       time.sleep(3)
-       return
+       print(f"ID: {aluno[0]} || Nome: {aluno[1]} || Idade: {aluno[2]} || Curso: {aluno[3]}*")
+
+    time.sleep(3)
+    return
 
 def listaProf():
     if len(profC) == 0:
@@ -169,7 +170,7 @@ def menuSecretaria():
       print("3-cadastrar aluno")
       print("4-cadastrar professor")
       print("5-fazer alteração na conta do aluno")
-      print("5-fazer alteração na conta do professor")
+      print("6-fazer alteração na conta do professor")
       print("7-voltar para a tela de login")
 
       escolha = input("\nqual sera sua escolha: ")
@@ -187,7 +188,7 @@ def menuSecretaria():
       elif escolha == "4":
          cadastroProfessor()
 
-      elif escolha == "5":
+      elif escolha == "7":
         print("voltando...")
         time.sleep(2)
         login()
