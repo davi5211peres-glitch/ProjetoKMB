@@ -1,0 +1,190 @@
+import random 
+import time
+import os
+from MYSQLxPYTHON import *
+from def_loading import *
+from defs_validacoes import *
+from defs_cadastros import *
+from defs_listagens import *
+
+delay = random.randint(1 , 2)
+alunosC = []
+profC = []
+ 
+import mysql.connector
+from mysql.connector import Error
+
+#oi
+#marca de presença
+
+def notas():
+    lista()
+    selectAluno = input("qual aluno você gostaria de adicionar nota: ")
+    if selectAluno not in alunosC:
+     print("escolha um aluno existente")
+     return
+
+def deletarAluno():
+   conn = conectar()
+   cursor = conn.cursor()
+
+   id_deletar = input("digite o ID do aluno: ")
+
+   if not id_deletar.isdigit():
+      print("digite um ID válido")
+      time.sleep(3)
+      return
+
+   try:
+      cursor.execute("DELETE FROM alunos WHERE id_aluno = %s",(id_deletar,))
+      conn.commit()
+
+      if cursor.rowcount > 0:
+         print("aluno deletado")
+         time.sleep(3)
+         return
+      else:
+         print("nenhum aluno com esse ID")
+         time.sleep(3)
+         return
+   except Error as e:
+      print(f"erro ao deletar aluno: {e}")
+      time.sleep(10)
+      return
+   finally:
+      cursor.close()
+      conn.close()
+
+def menuProf():
+    while True:
+     os.system('cls' if os.name == 'nt' else 'clear')
+     print("\n====================")
+     print("bem vindo ao sistema")
+     print("====================\n")
+
+     print("1-mudar nota")
+     print("2-ver a lista de alunos")
+     print("3-ver a lista de professores")
+     print("4-adicionar nota")
+     print("5-voltar para a tela de login")
+     print("0-sair do sistema")
+
+     escolha = input("qual sera sua escolha: ")
+
+     if escolha == "1":
+         print
+
+     if escolha == "2":
+         lista()
+
+     elif escolha == "3":
+         listaProf()
+     
+     elif escolha == "4":
+         notas()
+
+     elif escolha == "5":
+        print("voltando...")
+        time.sleep(2)
+        login()
+
+     elif escolha == "0":
+        print("saindo...")
+        time.sleep(2)
+        break
+     else:
+        print("erro\n")
+
+def materias():
+   print
+
+def menuAluno():
+    while True:
+     os.system('cls' if os.name == 'nt' else 'clear')
+     print("\n====================")
+     print("bem vindo ao sistema")
+     print("====================\n")
+     print("1-")
+     print("2-ver materias")
+     print("3-ver os professores")
+     print("4-voltar para a tela de login")
+     print("0-sair")
+
+     escolha = input("qual sera sua escolha: ")
+
+     if escolha == "2":
+        materias()
+    
+     elif escolha == "4":
+        print("\nvoltando...")
+        time.sleep(2)
+        login()
+
+     elif escolha == "0":
+        print("saindo...")
+        time.sleep(2)
+        break
+     else:
+        print("erro")
+
+def menuSecretaria():
+   while True:
+      os.system('cls' if os.name == 'nt' else 'clear')
+      print("\n====================")
+      print("bem vindo ao sistema")
+      print("====================\n")
+      print("1-deletar aluno do sistema")
+      print("2-deletar professor do sistema")
+      print("3-cadastrar aluno")
+      print("4-cadastrar professor")
+      print("5-fazer alteração na conta do aluno")
+      print("6-fazer alteração na conta do professor")
+      print("7-voltar para a tela de login")
+
+      escolha = input("\nqual sera sua escolha: ")
+
+      if escolha == "1":
+         lista()
+         deletarAluno()
+
+      elif escolha == "2":
+         print("oi2")
+
+      elif escolha == "3":
+         cadastro()
+
+      elif escolha == "4":
+         cadastroProfessor()
+
+      elif escolha == "7":
+        print("voltando...")
+        time.sleep(2)
+        login()
+
+      else:
+         print("erro\n")
+
+def login():
+  while True:  
+   os.system('cls' if os.name == 'nt' else 'clear')
+   print("=========================")
+   print("==========LOGIN==========")
+   print("=========================\n")
+
+   usuario = input("usuario: ").lower()
+   senha = input("senha: ")
+
+   if usuario == "professor":
+      menuProf()
+
+   elif usuario == "secretaria":
+      menuSecretaria()
+
+   elif usuario == "aluno":
+      menuAluno()
+
+   else:
+      print("usuario não encontrado")
+      break
+
+login()
