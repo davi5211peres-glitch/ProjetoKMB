@@ -125,7 +125,9 @@ def menuProf():
         time.sleep(2)
         break
      else:
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("erro\n")
+        time.sleep(2)
 
 def materias():
    print
@@ -157,7 +159,9 @@ def menuAluno():
         time.sleep(2)
         break
      else:
-        print("erro")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("erro\n")
+        time.sleep(2)
 
 def menuSecretaria():
    while True:
@@ -194,7 +198,9 @@ def menuSecretaria():
         login()
 
       else:
-         print("erro\n")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("erro\n")
+        time.sleep(2)
 
 def login():
   while True:  
