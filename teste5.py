@@ -9,7 +9,7 @@ from defs_cadastros import *
 delay = random.randint(1 , 2)
 alunosC = []
 profC = []
- 
+  
 import mysql.connector
 from mysql.connector import Error
 
