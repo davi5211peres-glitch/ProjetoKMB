@@ -56,3 +56,21 @@ def listaNotas():
 
    time.sleep(5)
    return
+
+def listaCursos():
+   conn = conectar()
+   cursor = conn.cursor()
+
+   cursor.execute("SELECT * FROM cursos")
+   resultados = cursor.fetchall()
+
+   if not resultados:
+      print("nenhum curso no sistema")
+      time.sleep(3)
+      return
+   
+   for curso in resultados:
+      print(f"ID: {curso[0]} || Curso: {curso[1]}")
+
+   time.sleep(3)
+   return

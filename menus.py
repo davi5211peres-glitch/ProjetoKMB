@@ -18,101 +18,6 @@ from mysql.connector import Error
 #oi
 #marca de presença
 
-def adicionarNota():
-   conn = conectar()
-   cursor = conn.cursor()
-
-   print("\naviso! para cadastrar uma nota deve haver pelo menos um aluno e um professor cadastrado")
-   time.sleep(2)
-   prosseguir = input("deseja prosseguir? (s/n): ")
-   
-   if prosseguir.lower() == "n":
-      return menuProf()
-   elif prosseguir.lower() == "s":
-      cursor.execute("SELECT COUNT(*) FROM alunos")
-      total_alunos = cursor.fetchone()[0]
-      
-      cursor.execute("SELECT COUNT(*) FROM professores")
-      total_professores = cursor.fetchone()[0]
-
-      if total_alunos == 0 or total_professores == 0:
-         print("\nerro encontrado. não há alunos e/ou professores presentes")
-         print(f"alunos cadastrados: {total_alunos} || professores cadastrados: {total_professores}")
-         time.sleep(4)
-         return menuProf()
-      
-      
-      lista()
-      time.sleep(2)
-      
-      try:
-         selectAluno = int(input("\nqual o ID do aluno que deseja adicionar nota?: "))
-      except ValueError:
-         print("digite um ID válido")
-         time.sleep(2)
-         return menuProf()
-
-      cursor.execute("SELECT id_aluno FROM alunos WHERE id_aluno = %s", (selectAluno,))
-      if not cursor.fetchone():
-         print("ID não existe")
-         time.sleep(2)
-         return menuProf()
-      
-      listaProf()
-      time.sleep(2)
-
-      try:
-         selectProf = int(input("qual professor está atrelado a esta nota?: "))
-      except ValueError:
-         print("digite um ID válido")
-         time.sleep(2)
-         return menuProf()
-      
-      cursor.execute("SELECT id_professor FROM professores WHERE id_professor = %s", (selectProf,))
-      if not cursor.fetchone():
-         print("ID não existe")
-         time.sleep(2)
-         return menuProf()
-      
-      materia = input("\ndigite a matéria: ")
-
-      if materia.strip() == "" or not materia.replace(" ", "").isalpha():
-         print("erro no cadastro: campo vazio ou matéria inválida")
-         time.sleep(2)
-         return menuProf()
-      
-      try:
-         nota = float(input("\ndigite a nota do aluno (ex: 8.5): "))
-         if nota < 0 or nota > 10:
-            print("nota deve ser entre 0 e 10.")
-            time.sleep(2)
-            return menuProf()
-      except ValueError:
-        print("digite um valor numérico para a nota.")
-        time.sleep(2)
-        return menuProf()
-      
-      try:
-         sql = """
-          INSERT INTO notas (notas, materia, fk_idaluno, fk_idprofessor)
-          VALUES (%s, %s, %s, %s)
-         """
-         valores = (nota, materia, selectAluno, selectProf)
-
-         cursor.execute(sql, valores)
-         conn.commit()
-
-         print("nota cadastrada")
-         time.sleep(2)  
-      except Error as e:
-         print(f"erro no cadastro: {e}")
-         time.sleep(5)
-      finally:
-         cursor.close()
-         conn.close()
-
-      return menuProf()
-
 
 def menuProf():
     while True:
@@ -175,6 +80,9 @@ def menuAluno():
 
      escolha = input("qual sera sua escolha: ")
 
+     if escolha == "1":
+        listaNotas()
+
      if escolha == "2":
         materias()
     
@@ -218,7 +126,7 @@ def menuSecretaria():
          deletarProfessor()
 
       elif escolha == "3":
-         cadastro()
+         cadastroAluno()
 
       elif escolha == "4":
          cadastroProfessor()
