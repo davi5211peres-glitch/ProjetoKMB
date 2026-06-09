@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import random 
 import time
 import os
@@ -340,3 +341,7 @@ def login():
       break
 
 login()
+=======
+from menus import *
+login()
+>>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
