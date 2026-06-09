@@ -5,7 +5,7 @@ from MYSQLxPYTHON import *
 from def_loading import *
 from defs_validacoes import *
 from defs_cadastros import *
-
+ 
 <<<<<<< HEAD
 import random 
 import time
