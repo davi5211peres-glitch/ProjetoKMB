@@ -33,11 +33,22 @@ def conectar():
 
 
 cursor.execute("""
+    CREATE TABLE IF NOT EXISTS cursos(
+        id_curso INT AUTO_INCREMENT PRIMARY KEY,
+        curso VARCHAR(100) NOT NULL
+               
+        
+    )
+""")
+
+
+
+cursor.execute("""
     CREATE TABLE IF NOT EXISTS alunos (
         id_aluno INT AUTO_INCREMENT PRIMARY KEY,
         nome VARCHAR(100) NOT NULL,
         idade INT NOT NULL,
-        fk_idcurso VARCHAR(50) NOT NULL,
+        fk_idcurso INT NOT NULL,
                
         FOREIGN KEY (fk_idcurso)
             REFERENCES cursos(id_curso)
@@ -67,10 +78,8 @@ cursor.execute("""
     )
 """)
 
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS cursos(
-        id_curso INT AUTO_INCREMENT PRIMARY KEY,
-        curso VARCHAR(100) NOT NULL
-    )
-""")
+cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Desenvolvimento de Sistemas');")
+cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Multimídia');")
+cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Jogos Digitais');")
 
+conn.commit()

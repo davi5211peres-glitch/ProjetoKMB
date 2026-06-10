@@ -131,6 +131,7 @@ def menuSecretaria():
       elif escolha == "4":
          cadastroProfessor()
 
+
       elif escolha == "7":
         print("voltando...")
         time.sleep(2)
