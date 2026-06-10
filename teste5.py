@@ -6,7 +6,7 @@ from def_loading import *
 from defs_validacoes import *
 from defs_cadastros import *
  
-<<<<<<< HEAD
+<<<<<<< HEAD  
 import random 
 import time
 import os
@@ -50,7 +50,7 @@ cursor.execute("""
     );
 """)
 
-def conectar():
+def conectar():  
     try:
         conexão = mysql.connector.connect(
             host = "127.0.0.1",
@@ -81,7 +81,7 @@ def cadastroProfessor():
        print("====================")
        time.sleep(3)
        return
-
+     
 
 def cadastro():
     conn = conectar()
@@ -93,7 +93,7 @@ def cadastro():
 
     nome = input("qual aluno você quer cadastrar: ")
     idade = input("qual a idade: ")
-    curso = input("qual é o curso: ")
+    curso = input("qual é o curso: ") 
 
     try:
         if validation(nome,idade,curso):
@@ -117,7 +117,7 @@ def loading():
     time.sleep(delay)
     os.system('cls' if os.name == 'nt' else 'clear')
     print("iniciando cadastro")
-    print("🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛⬛")
+    print("🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛⬛") 
     time.sleep(delay)
     os.system('cls' if os.name == 'nt' else 'clear')
     print("iniciando cadastro")
@@ -164,7 +164,7 @@ def validation(nome,idade,curso):
         return False
 
     if not nome.replace(" ", "").isalpha():
-        print("erro encontrado (4)")
+        print("erro encontrado (4)") 
         time.sleep(3)
         return False
     
