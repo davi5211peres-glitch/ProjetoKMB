@@ -54,10 +54,10 @@ def cadastroAluno():
        time.sleep(2)
        return
 
-    sql = "INSERT INTO alunos (nome, idade, fk_idcurso) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO alunos (nome, idade, curso) VALUES (%s, %s, %s)"
 
     try:
-        if validation(nome,idade,id_curso):
+        if validation(nome,idade,cursop):
             cursor.execute(sql, (nome,idade,id_curso))
             conn.commit()
             print("\naluno cadastrado com sucesso")

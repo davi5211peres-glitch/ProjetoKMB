@@ -62,6 +62,7 @@ def menuProf():
         break
      else:
         print("erro\n")
+        time.sleep(2)
 
 def materias():
    print
@@ -100,6 +101,7 @@ def menuAluno():
         break
      else:
         print("erro")
+        time.sleep(2)
 
 def menuSecretaria():
    while True:
@@ -139,6 +141,7 @@ def menuSecretaria():
 
       else:
          print("erro\n")
+         time.sleep(2)
 
 def login():
   while True:  
