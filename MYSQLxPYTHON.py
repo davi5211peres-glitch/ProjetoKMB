@@ -35,9 +35,7 @@ def conectar():
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS cursos(
         id_curso INT AUTO_INCREMENT PRIMARY KEY,
-        curso VARCHAR(100) NOT NULL
-               
-        
+        curso VARCHAR(100) NOT NULL UNIQUE
     )
 """)
 
