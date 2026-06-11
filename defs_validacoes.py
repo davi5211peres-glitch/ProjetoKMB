@@ -1,12 +1,19 @@
 import time
 
-def validation(nome,idade,curso):
+def validation(nome,idade,id_curso):
     if nome.strip() == "":
         print("erro encontrado (1)")
         time.sleep(3)
         return False
     
-    if curso.strip() == "":
+    idade = int(idade)
+
+    if idade >= 21:
+        print("erro encontrado (idade)")
+        time.sleep(3)
+        return False
+    
+    if id_curso.strip() == "":
        print("erro encontrado (2)")
        time.sleep(3)
        return False
@@ -21,7 +28,7 @@ def validation(nome,idade,curso):
         time.sleep(3)
         return False
     
-    if not curso.replace(" ", "").isalpha():
+    if not id_curso.isdigit():
        print("erro encontrado (5)")
        time.sleep(3)
        return False
@@ -34,6 +41,11 @@ def validarProf(professor, idadeP, materia, cursoP):
        print("erro encontrado (1)")
        time.sleep(3)
        return
+    
+    if idadeP <= 21:
+        print("erro encontrado (idade)")
+        time.sleep(3)
+        return False
  
     if cursoP.strip() == "":
        print("erro encontrado (2)")

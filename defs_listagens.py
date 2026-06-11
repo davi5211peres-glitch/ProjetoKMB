@@ -7,7 +7,16 @@ def lista():
     conn = conectar()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM alunos")
+    cursor.execute("""
+         SELECT
+            a.id_aluno,
+            a.nome,
+            a.idade,
+            c.curso
+         FROM alunos a
+         INNER JOIN cursos c
+            ON a.fk_idcurso = c.id_curso
+    """)
     resultados = cursor.fetchall()
 
     if not resultados:
@@ -15,8 +24,8 @@ def lista():
        time.sleep(3)
        return
 
-    for aluno in resultados:
-       print(f"ID: {aluno[0]} || Nome: {aluno[1]} || Idade: {aluno[2]} || Curso: {aluno[3]}")
+    for id_aluno, nome, idade, curso in resultados:
+       print(f"ID: {id_aluno} || Nome: {nome} || Idade: {idade} || Curso: {curso}")
 
     time.sleep(5)
     return

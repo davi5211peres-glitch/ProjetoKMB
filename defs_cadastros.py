@@ -42,19 +42,13 @@ def cadastroAluno():
 
     loading()
 
-
     nome = input("qual aluno você quer cadastrar: ")
     idade = input("qual a idade: ")
 
     listaCursos()
-    try:
-        curso = input("qual é o ID do curso: ").lower()
-    except ValueError:
-        print("insira um ID válido")
-        time.sleep(2)
-        return
+    id_curso = input("qual é o ID do curso: ").lower()
 
-    cursor.execute("SELECT id_curso FROM cursos WHERE id_curso = %s", (curso,))
+    cursor.execute("SELECT id_curso FROM cursos WHERE id_curso = %s", (id_curso,))
     if not cursor.fetchone():
        print("ID não existe")
        time.sleep(2)
@@ -63,10 +57,10 @@ def cadastroAluno():
     sql = "INSERT INTO alunos (nome, idade, curso) VALUES (%s, %s, %s)"
 
     try:
-        if validation(nome,idade,curso):
-            cursor.execute(sql, (nome,idade,curso))
+        if validation(nome,idade,id_curso):
+            cursor.execute(sql, (nome,idade,id_curso))
             conn.commit()
-            print("\nusuario cadastrado com sucesso")
+            print("\naluno cadastrado com sucesso")
             time.sleep(3)
             return
     except Error as e:
@@ -85,6 +79,11 @@ def adicionarNota():
    time.sleep(2)
    prosseguir = input("deseja prosseguir? (s/n): ")
    
+   if prosseguir.lower() != "s" or prosseguir.lower() != "n":
+      print("digite apenas s ou n")
+      time.sleep(2)
+      return
+
    if prosseguir.lower() == "n":
       return
    elif prosseguir.lower() == "s":
@@ -99,7 +98,6 @@ def adicionarNota():
          print(f"alunos cadastrados: {total_alunos} || professores cadastrados: {total_professores}")
          time.sleep(4)
          return
-      
       
       lista()
       time.sleep(2)
