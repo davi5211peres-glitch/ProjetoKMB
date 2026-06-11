@@ -7,6 +7,7 @@ from defs_validacoes import *
 from defs_cadastros import *
 from defs_listagens import *
 from defs_deletar import *
+from def_atualizacoes import *
 
 delay = random.randint(1 , 2)
 alunosC = []
@@ -133,6 +134,8 @@ def menuSecretaria():
       elif escolha == "4":
          cadastroProfessor()
 
+      elif escolha == "5":
+         mudarAluno()
 
       elif escolha == "7":
         print("voltando...")
