@@ -34,7 +34,17 @@ def listaProf():
    conn = conectar()
    cursor = conn.cursor()
 
-   cursor.execute("SELECT * FROM professores")
+   cursor.execute("""
+      SELECT
+         p.id_professor,
+         p.nome,
+         p.idade,
+         p.materia,
+         c.curso
+      FROM professores p
+      INNER JOIN cursos c
+         ON p.fk_idcurso = c.id_curso
+   """)
    resultados = cursor.fetchall()
 
    if not resultados:
@@ -42,8 +52,8 @@ def listaProf():
       time.sleep(3)
       return
 
-   for professor in resultados:
-      print(f"ID: {professor[0]} || Nome: {professor[1]} || Idade: {professor[2]} || Matéria: {professor[3]} || Curso: {professor[4]}")
+   for id_professor, nome, idade, materia, curso in resultados:
+      print(f"ID: {id_professor} || Nome: {nome} || Idade: {idade} || Matéria: {materia} || Curso: {curso}")
 
    time.sleep(5)
    return

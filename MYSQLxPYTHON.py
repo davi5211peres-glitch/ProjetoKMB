@@ -59,7 +59,12 @@ cursor.execute("""
         id_professor INT AUTO_INCREMENT PRIMARY KEY,
         nome VARCHAR(100) NOT NULL,
         idade INT NOT NULL,
-        curso VARCHAR(50) NOT NULL
+        materia VARCHAR(50) NOT NULL,
+        fk_idcurso INT NOT NULL,
+        
+        FOREIGN KEY (fk_idcurso)
+            REFERENCES cursos(id_curso)
+            ON DELETE CASCADE
     )
 """)
 

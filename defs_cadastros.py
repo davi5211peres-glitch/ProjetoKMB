@@ -15,13 +15,21 @@ def cadastroProfessor():
     professor = input("nome do professor: ")
     idadeP = input("qual a idade: ")
     materia = input("qual é a materia que da aula: ")
-    cursoP = input("qual a turma que ele da aula: ")
 
-    sql = "INSERT INTO professores (nome, idade, materia, curso) VALUES (%s, %s, %s, %s)"
+    listaCursos()
+    id_cursoP = input("qual o ID do curso que ele da aula: ")
+
+    cursor.execute("SELECT id_curso FROM cursos WHERE id_curso = %s", (id_cursoP,))
+    if not cursor.fetchone():
+       print("ID não existe")
+       time.sleep(2)
+       return
+
+    sql = "INSERT INTO professores (nome, idade, materia, fk_idcurso) VALUES (%s, %s, %s, %s)"
 
     try:
-        if validarProf(professor,idadeP,materia,cursoP):
-            cursor.execute(sql, (professor,idadeP,materia,cursoP))
+        if validarProf(professor,idadeP,materia,id_cursoP):
+            cursor.execute(sql, (professor,idadeP,materia,id_cursoP))
             conn.commit()
             print("\nprofessor cadastrado com sucesso")
             print("====================")
