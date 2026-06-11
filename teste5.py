@@ -6,7 +6,6 @@ from def_loading import *
 from defs_validacoes import *
 from defs_cadastros import *
  
-<<<<<<< HEAD  
 import random 
 import time
 import os
@@ -251,7 +250,7 @@ profC = []
 import mysql.connector
 from mysql.connector import Error
 
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
+
 def lista():
     conn = conectar()
     cursor = conn.cursor()
@@ -364,13 +363,13 @@ def menuProf():
         time.sleep(2)
         break
      else:
-<<<<<<< HEAD
+
         print("erro\n")
-=======
+
         os.system('cls' if os.name == 'nt' else 'clear')
         print("erro\n")
         time.sleep(2)
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
+
 
 def materias():
    print
@@ -402,13 +401,13 @@ def menuAluno():
         time.sleep(2)
         break
      else:
-<<<<<<< HEAD
+
         print("erro")
-=======
+
         os.system('cls' if os.name == 'nt' else 'clear')
         print("erro\n")
         time.sleep(2)
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
+
 
 def menuSecretaria():
    while True:
@@ -445,13 +444,13 @@ def menuSecretaria():
         login()
 
       else:
-<<<<<<< HEAD
+
          print("erro\n")
-=======
+
         os.system('cls' if os.name == 'nt' else 'clear')
         print("erro\n")
         time.sleep(2)
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
+
 
 def login():
   while True:  
@@ -476,8 +475,5 @@ def login():
       print("usuario não encontrado")
       break
 
-<<<<<<< HEAD
+
 login()
-=======
-login()
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
