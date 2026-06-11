@@ -6,6 +6,13 @@ def validation(nome,idade,id_curso):
         time.sleep(3)
         return False
     
+    idade = int(idade)
+
+    if idade >= 21:
+        print("erro encontrado (idade)")
+        time.sleep(3)
+        return False
+    
     if id_curso.strip() == "":
        print("erro encontrado (2)")
        time.sleep(3)
@@ -34,6 +41,11 @@ def validarProf(professor, idadeP, materia, cursoP):
        print("erro encontrado (1)")
        time.sleep(3)
        return
+    
+    if idadeP <= 21:
+        print("erro encontrado (idade)")
+        time.sleep(3)
+        return False
  
     if cursoP.strip() == "":
        print("erro encontrado (2)")
