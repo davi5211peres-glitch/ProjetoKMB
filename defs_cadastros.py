@@ -14,6 +14,8 @@ def cadastroProfessor():
 
     professor = input("nome do professor: ")
     idadeP = input("qual a idade: ")
+
+    listaMaterias()
     materia = input("qual é a materia que da aula: ")
 
     listaCursos()
@@ -107,7 +109,7 @@ def adicionarNota():
          time.sleep(4)
          return
       
-      lista()
+      listaAluno()
       time.sleep(2)
       
       try:

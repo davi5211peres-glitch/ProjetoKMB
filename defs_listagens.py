@@ -3,7 +3,7 @@ import time
 from mysql.connector import Error
 from MYSQLxPYTHON import conectar
 
-def lista():
+def listaAluno():
     conn = conectar()
     cursor = conn.cursor()
 
@@ -39,9 +39,11 @@ def listaProf():
          p.id_professor,
          p.nome,
          p.idade,
-         p.materia,
+         m.materia,
          c.curso
       FROM professores p
+      INNER JOIN materias m
+         ON p.fk_idmateria = m.id_materia
       INNER JOIN cursos c
          ON p.fk_idcurso = c.id_curso
    """)
@@ -62,7 +64,18 @@ def listaNotas():
    conn = conectar()
    cursor = conn.cursor()
 
-   cursor.execute("SELECT * FROM notas")
+   cursor.execute("""
+      SELECT
+         n.id_nota
+         n.nota
+         m.materia
+         a.aluno
+      FROM notas n
+      INNER JOIN materias m
+         ON n.fk_idmateria = m.materia
+      INNER JOIN alunos a
+         ON n.fk_idaluno = a.id_aluno
+   """)
    resultados = cursor.fetchall()
 
    if not resultados:
@@ -70,8 +83,8 @@ def listaNotas():
       time.sleep(3)
       return
    
-   for nota in resultados:
-      print(f"ID: {nota[0]} || Nota: {nota[1]} || Matéria: {nota[2]} || ID do aluno: {nota[3]} || ID do professor: {nota[4]}")
+   for id_nota, nota, materia, aluno in resultados:
+      print(f"ID: {id_nota} || Nota: {nota} || Matéria: {materia} || Aluno: {aluno}")
 
    time.sleep(5)
    return
@@ -80,7 +93,7 @@ def listaCursos():
    conn = conectar()
    cursor = conn.cursor()
 
-   cursor.execute("SELECT * FROM cursos")
+   cursor.execute("SELECT * FROM cursos ORDER BY id_materia ASC")
    resultados = cursor.fetchall()
 
    if not resultados:
@@ -90,6 +103,19 @@ def listaCursos():
    
    for curso in resultados:
       print(f"ID: {curso[0]} || Curso: {curso[1]}")
+
+   time.sleep(3)
+   return
+
+def listaMaterias():
+   conn = conectar()
+   cursor = conn.cursor()
+
+   cursor.execute("SELECT * FROM materias ORDER BY id_materia ASC")
+   resultados = cursor.fetchall()
+
+   for materia in resultados:
+      print(f"ID: {materia[0]} || Matéria: {materia[1]}")
 
    time.sleep(3)
    return

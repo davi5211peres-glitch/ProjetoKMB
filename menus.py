@@ -31,8 +31,9 @@ def menuProf():
      print("2-ver a lista de alunos")
      print("3-ver a lista de professores")
      print("4-ver a lista de notas")
-     print("5-adicionar nota")
-     print("6-voltar para a tela de login")
+     print("5-ver a lista de matérias")
+     print("6-adicionar nota")
+     print("7-voltar para a tela de login")
      print("0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
@@ -41,7 +42,7 @@ def menuProf():
          print
 
      if escolha == "2":
-         lista()
+         listaAluno()
 
      elif escolha == "3":
          listaProf()
@@ -50,9 +51,12 @@ def menuProf():
         listaNotas()
 
      elif escolha == "5":
-         adicionarNota()
+        listaMaterias()
 
      elif escolha == "6":
+         adicionarNota()
+
+     elif escolha == "7":
         print("voltando...")
         time.sleep(2)
         login()
@@ -86,7 +90,7 @@ def menuAluno():
         listaNotas()
 
      if escolha == "2":
-        materias()
+        listaMaterias()
     
      elif escolha == "3":
         listaProf()
@@ -121,7 +125,7 @@ def menuSecretaria():
       escolha = input("\nqual sera sua escolha: ")
 
       if escolha == "1":
-         lista()
+         listaAluno()
          deletarAluno()
 
       elif escolha == "2":
