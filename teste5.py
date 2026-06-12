@@ -21,8 +21,8 @@ conn = mysql.connector.connect(
             host = "127.0.0.1",
             user = "root",
             password = "Senac2026",
-)
-
+) 
+   
 cursor = conn.cursor()
 
 cursor.execute("""
@@ -37,9 +37,9 @@ cursor.execute("""
         nome VARCHAR(100) NOT NULL,
         idade INT NOT NULL,
         curso VARCHAR(50) NOT NULL
-    );
-""")
-
+    );   
+""") 
+   
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS professores (
         id_professor INT AUTO_INCREMENT PRIMARY KEY,
@@ -49,13 +49,13 @@ cursor.execute("""
         curso VARCHAR(200) NOT NULL
     );
 """)
-
-def conectar():  
+  
+def conectar():     
     try:
         conexão = mysql.connector.connect(
             host = "127.0.0.1",
-            user = "root",
-            password = "Senac2026",
+            user = "root",  
+            password = "Senac2026", 
             database = "escola",
         )
         return conexão
