@@ -83,27 +83,20 @@ def adicionarNota():
    conn = conectar()
    cursor = conn.cursor()
 
-   print("\naviso! para cadastrar uma nota deve haver pelo menos um aluno e um professor cadastrado")
+   print("\naviso! para cadastrar uma nota deve haver pelo menos um aluno cadastrado")
    time.sleep(2)
    prosseguir = input("deseja prosseguir? (s/n): ")
-   
-   if prosseguir.lower() != "s" or prosseguir.lower() != "n":
-      print("digite apenas s ou n")
-      time.sleep(2)
-      return
 
    if prosseguir.lower() == "n":
       return
    elif prosseguir.lower() == "s":
       cursor.execute("SELECT COUNT(*) FROM alunos")
       total_alunos = cursor.fetchone()[0]
-      
-      cursor.execute("SELECT COUNT(*) FROM professores")
-      total_professores = cursor.fetchone()[0]
 
-      if total_alunos == 0 or total_professores == 0:
-         print("\nerro encontrado. não há alunos e/ou professores presentes")
-         print(f"alunos cadastrados: {total_alunos} || professores cadastrados: {total_professores}")
+
+      if total_alunos == 0:
+         print("\nerro encontrado. não há alunos presentes")
+         print(f"alunos cadastrados: {total_alunos}")
          time.sleep(4)
          return
       
@@ -143,7 +136,7 @@ def adicionarNota():
       
       try:
          sql = """
-          INSERT INTO notas (notas, materia, fk_idaluno)
+          INSERT INTO notas (nota, materia, fk_idaluno)
           VALUES (%s, %s, %s)
          """
          valores = (nota, materia, selectAluno)
@@ -160,4 +153,8 @@ def adicionarNota():
          cursor.close()
          conn.close()
 
+      return
+   else:
+      print("digite apenas s/n")
+      time.sleep(2)
       return

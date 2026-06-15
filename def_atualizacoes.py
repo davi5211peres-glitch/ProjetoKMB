@@ -20,12 +20,22 @@ def mudarAluno():
     
     novo_nome = input("digite o novo nome (vazio para não alterar): ")
     nova_idade = input("digite a nova idade (vazio para não alterar): ")
+    listaCursos()
+    try:
+        novo_curso = int(input("digite o ID do novo curso (vazio para não alterar): "))
+    except ValueError:
+        print("digite um ID válido")
+        time.sleep(2)
+        return
 
     if novo_nome:
         cursor.execute("UPDATE alunos SET nome = %s WHERE id_aluno = %s ", (novo_nome, id_busca))
 
     if nova_idade:
         cursor.execute("UPDATE alunos SET idade = %s WHERE id_aluno = %s", (nova_idade, id_busca))
+
+    if novo_curso:
+        cursor.execute("UPDATE alunos SET fk_idcurso = %s WHERE id_aluno = %s", (novo_curso, id_busca))
 
     conn.commit()
     print("\naluno atualizado com sucesso")

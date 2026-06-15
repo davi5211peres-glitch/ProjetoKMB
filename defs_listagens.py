@@ -62,7 +62,16 @@ def listaNotas():
    conn = conectar()
    cursor = conn.cursor()
 
-   cursor.execute("SELECT * FROM notas")
+   cursor.execute("""
+      SELECT
+         n.id_nota
+         n.nota
+         n.materia
+         a.nome
+      FROM notas n
+      INNER JOIN alunos a
+         ON n.fk_idaluno = a.id_aluno
+   """)
    resultados = cursor.fetchall()
 
    if not resultados:
@@ -70,8 +79,8 @@ def listaNotas():
       time.sleep(3)
       return
    
-   for nota in resultados:
-      print(f"ID: {nota[0]} || Nota: {nota[1]} || Matéria: {nota[2]} || ID do aluno: {nota[3]} || ID do professor: {nota[4]}")
+   for id_nota, nota, materia, aluno in resultados:
+      print(f"ID: {id_nota} || Nota: {nota} || Matéria: {materia} || Aluno: {aluno}")
 
    time.sleep(5)
    return
@@ -80,7 +89,7 @@ def listaCursos():
    conn = conectar()
    cursor = conn.cursor()
 
-   cursor.execute("SELECT * FROM cursos")
+   cursor.execute("SELECT * FROM cursos ORDER BY id_curso ASC")
    resultados = cursor.fetchall()
 
    if not resultados:
