@@ -8,7 +8,7 @@ from defs_validacoes import *
 from defs_cadastros import *
  
 import random 
-import time
+import time   
 import os
 delay = random.randint(1, 6)
 alunosC = []
@@ -16,7 +16,7 @@ profC = []
  
 import mysql.connector
 from mysql.connector import Error
-
+ 
 conn = mysql.connector.connect(
             host = "127.0.0.1",
             user = "root",
@@ -26,7 +26,7 @@ conn = mysql.connector.connect(
 cursor = conn.cursor()
 
 cursor.execute("""
-    CREATE DATABASE IF NOT EXISTS escola;
+    CREATE DATABASE IF NOT EXISTS escola;   
     """)
 
 cursor.execute("USE escola")
