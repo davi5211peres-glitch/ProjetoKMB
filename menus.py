@@ -141,6 +141,9 @@ def menuSecretaria():
       elif escolha == "5":
          mudarAluno()
 
+      elif escolha == "6":
+         mudarProf()
+
       elif escolha == "7":
         print("voltando...")
         time.sleep(2)

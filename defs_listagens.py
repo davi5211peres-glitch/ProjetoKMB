@@ -25,7 +25,7 @@ def listaAluno():
        return
 
     for id_aluno, nome, idade, curso in resultados:
-       print(f"ID: {id_aluno} || Nome: {nome} || Idade: {idade} || Curso: {curso}")
+       print(f"\nID: {id_aluno} || Nome: {nome} || Idade: {idade} || Curso: {curso}")
 
     time.sleep(5)
     return
@@ -55,7 +55,7 @@ def listaProf():
       return
 
    for id_professor, nome, idade, materia, curso in resultados:
-      print(f"ID: {id_professor} || Nome: {nome} || Idade: {idade} || Matéria: {materia} || Curso: {curso}")
+      print(f"\nID: {id_professor} || Nome: {nome} || Idade: {idade} || Matéria: {materia} || Curso: {curso}")
 
    time.sleep(5)
    return
@@ -66,13 +66,13 @@ def listaNotas():
 
    cursor.execute("""
       SELECT
-         n.id_nota
-         n.nota
-         m.materia
-         a.aluno
+         n.id_nota,
+         n.nota,
+         m.materia,
+         a.nome
       FROM notas n
       INNER JOIN materias m
-         ON n.fk_idmateria = m.materia
+         ON n.fk_idmateria = m.id_materia
       INNER JOIN alunos a
          ON n.fk_idaluno = a.id_aluno
    """)
@@ -84,7 +84,7 @@ def listaNotas():
       return
    
    for id_nota, nota, materia, aluno in resultados:
-      print(f"ID: {id_nota} || Nota: {nota} || Matéria: {materia} || Aluno: {aluno}")
+      print(f"\nID: {id_nota} || Nota: {nota} || Matéria: {materia} || Aluno: {aluno}")
 
    time.sleep(5)
    return

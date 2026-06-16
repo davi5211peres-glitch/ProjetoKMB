@@ -10,7 +10,7 @@ def mudarAluno():
     conn = conectar()
     cursor = conn.cursor()
 
-    lista()
+    listaAluno()
     try:
         id_busca = int(input("Digite o ID do aluno que deseja mudar: "))
     except ValueError:
@@ -39,6 +39,55 @@ def mudarAluno():
 
     conn.commit()
     print("\naluno atualizado com sucesso")
+    time.sleep(2)
+    cursor.close()
+    conn.close()
+    return
+
+def mudarProf():
+    conn = conectar()
+    cursor = conn.cursor()
+
+    listaProf()
+    try:
+        id_buscaP = int(input("Digite o ID do professor que deseja mudar: "))
+    except ValueError:
+        print("Digite um ID válido")
+        time.sleep(2)
+        return
+    
+    novo_nome = input("Digite o novo nome (vazio para não alterar): ")
+    nova_idade = input("Digite a nova idade (vazio para não alterar): ")
+    listaMaterias()
+    try:
+        id_buscaM = int(input("Digite o ID da matéria (vazio para não alterar): "))
+    except ValueError:
+        print("Digite um ID válido")
+        time.sleep(2)
+        return
+    
+    listaCursos()
+    try:
+        id_buscaC = int(input("Digite o ID da matéria (vazio para não alterar): "))
+    except ValueError:
+        print("Digite um ID válido")
+        time.sleep(2)
+        return
+    
+    if novo_nome:
+        cursor.execute("UPDATE professores SET nome = %s WHERE id_professor = %s", (novo_nome, id_buscaP))
+
+    if nova_idade:
+        cursor.execute("UPDATE professores SET idade = %s WHERE id_professor = %s", (nova_idade, id_buscaP))
+
+    if id_buscaM:
+        cursor.execute("UPDATE professores SET fk_idmateria = %s WHERE id_professor = %s", (id_buscaM, id_buscaP))
+
+    if id_buscaC:
+        cursor.execute("UPDATE professores SET fk_idcurso = %s WHERE id_professor = %s", (id_buscaC, id_buscaP))
+
+    conn.commit()
+    print("\nprofessor atualizado com sucesso")
     time.sleep(2)
     cursor.close()
     conn.close()

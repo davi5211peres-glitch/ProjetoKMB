@@ -81,7 +81,7 @@ cursor.execute("""
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS notas(
         id_nota INT AUTO_INCREMENT PRIMARY KEY,
-        nota float NOT NULL,
+        nota DECIMAL(4,2) NOT NULL,
         fk_idmateria INT NOT NULL,
         fk_idaluno INT NOT NULL,
 
