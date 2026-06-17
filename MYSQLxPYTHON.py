@@ -99,7 +99,6 @@ cursor.execute("""
 cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Desenvolvimento de Sistemas');")
 cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Multimídia');")
 cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Jogos Digitais');")
-cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Todos');")
 
 cursor.execute("INSERT IGNORE INTO materias (materia) VALUES ('Português')")
 cursor.execute("INSERT IGNORE INTO materias (materia) VALUES ('Matemática')")
