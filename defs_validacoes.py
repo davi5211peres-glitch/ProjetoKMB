@@ -1,6 +1,8 @@
 import time
 
 def validation(nome,idade,id_curso):
+    """valida dados do aluno"""
+
     if nome.strip() == "":
         print("erro encontrado (1)")
         time.sleep(3)

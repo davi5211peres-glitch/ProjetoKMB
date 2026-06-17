@@ -92,3 +92,42 @@ def mudarProf():
     cursor.close()
     conn.close()
     return
+
+def mudarNota():
+    conn = conectar()
+    cursor = conn.cursor()
+
+    listaNotas()
+    try:
+        id_buscaN = int(input("Digite o ID da nota: "))
+    except ValueError:
+        print("Digite um ID válido")
+        time.sleep(2)
+        return
+    
+    try:
+        nova_nota = float(input("Digite a nova nota (ex: 8.5)(vazio para não alterar): "))
+    except ValueError:
+        print("Digite uma nota válida")
+        time.sleep(2)
+        return
+
+    listaMaterias()
+    try:
+        id_buscaM = int(input("Digite o ID da matéria (vazio para não alterar): "))
+    except ValueError:
+        print("Digite um ID válido")
+        time.sleep(2)
+        return
+    
+    if nova_nota:
+        cursor.execute("UPDATE notas SET nota = %s WHERE id_nota = %s", (nova_nota, id_buscaN))
+    
+    if id_buscaM:
+        cursor.execute("UPDATE notas SET fk_idmateria = %s WHERE id_nota = %s", (id_buscaM, id_buscaN))
+
+    conn.commit()
+    print("\nnota atualizada com sucesso")
+    cursor.close()
+    conn.close()
+    return

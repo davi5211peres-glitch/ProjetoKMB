@@ -39,7 +39,7 @@ def menuProf():
      escolha = input("|   - qual sera sua escolha: ")
 
      if escolha == "1":
-         print
+         mudarNota()
 
      if escolha == "2":
          listaAluno()
@@ -69,8 +69,6 @@ def menuProf():
         print("| erro\n")
         time.sleep(2)
 
-def materias():
-   print
 
 def menuAluno():
     while True:
