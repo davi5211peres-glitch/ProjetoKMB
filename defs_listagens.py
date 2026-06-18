@@ -20,12 +20,12 @@ def listaAluno():
     resultados = cursor.fetchall()
 
     if not resultados:
-       print("nenhum aluno cadastrado")
+       print("| nenhum aluno cadastrado")
        time.sleep(3)
        return
 
     for id_aluno, nome, idade, curso in resultados:
-       print(f"\nID: {id_aluno} || Nome: {nome} || Idade: {idade} || Curso: {curso}")
+       print(f"| ID: {id_aluno} | Nome: {nome} | Idade: {idade} | Curso: {curso}")
 
     time.sleep(5)
     return
@@ -50,12 +50,12 @@ def listaProf():
    resultados = cursor.fetchall()
 
    if not resultados:
-      print("nenhum professor cadastrado")
+      print("| 𝙽𝙴𝙽𝙷𝚄𝙼 𝙿𝚁𝙾𝙵𝙴𝚂𝚂𝙾𝚁 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙾")
       time.sleep(3)
       return
 
    for id_professor, nome, idade, materia, curso in resultados:
-      print(f"\nID: {id_professor} || Nome: {nome} || Idade: {idade} || Matéria: {materia} || Curso: {curso}")
+      print(f"| ID: {id_professor} | Nome: {nome} | Idade: {idade} | Matéria: {materia} | Curso: {curso}")
 
    time.sleep(5)
    return
@@ -66,25 +66,25 @@ def listaNotas():
 
    cursor.execute("""
       SELECT
-         n.id_nota,
-         n.nota,
-         m.materia,
-         a.nome
+         n.id_nota
+         n.nota
+         m.materia
+         a.aluno
       FROM notas n
       INNER JOIN materias m
-         ON n.fk_idmateria = m.id_materia
+         ON n.fk_idmateria = m.materia
       INNER JOIN alunos a
          ON n.fk_idaluno = a.id_aluno
    """)
    resultados = cursor.fetchall()
 
    if not resultados:
-      print("nenhuma nota cadastrada")
+      print("| 𝙽𝚄𝙽𝙷𝚄𝙼𝙰 𝙽𝙾𝚃𝙰 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙰")
       time.sleep(3)
       return
    
    for id_nota, nota, materia, aluno in resultados:
-      print(f"\nID: {id_nota} || Nota: {nota} || Matéria: {materia} || Aluno: {aluno}")
+      print(f"| ID: {id_nota} | Nota: {nota} | Matéria: {materia} | Aluno: {aluno}")
 
    time.sleep(5)
    return
@@ -97,12 +97,12 @@ def listaCursos():
    resultados = cursor.fetchall()
 
    if not resultados:
-      print("nenhum curso no sistema")
+      print("| 𝙽𝚄𝙽𝙷𝚄𝙼 𝙲𝚄𝚁𝚂𝙾 𝙽𝙾 𝚂𝙸𝚂𝚃𝙴𝙼𝙰")
       time.sleep(3)
       return
    
    for curso in resultados:
-      print(f"ID: {curso[0]} || Curso: {curso[1]}")
+      print(f"| ID: {curso[0]} | Curso: {curso[1]}")
 
    time.sleep(3)
    return
@@ -115,7 +115,7 @@ def listaMaterias():
    resultados = cursor.fetchall()
 
    for materia in resultados:
-      print(f"ID: {materia[0]} || Matéria: {materia[1]}")
+      print(f"| ID: {materia[0]} | Matéria: {materia[1]}")
 
    time.sleep(3)
    return
