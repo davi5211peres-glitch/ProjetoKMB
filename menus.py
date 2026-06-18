@@ -6,6 +6,7 @@ from def_loading import *
 from defs_validacoes import *
 from defs_cadastros import *
 from defs_listagens import *
+from defs_deletar import *
 
 delay = random.randint(1 , 2)
 alunosC = []
@@ -17,43 +18,6 @@ from mysql.connector import Error
 #oi
 #marca de presença
 
-def notas():
-    lista()
-    selectAluno = input("qual aluno você gostaria de adicionar nota: ")
-    if selectAluno not in alunosC:
-     print("escolha um aluno existente")
-     return
-
-def deletarAluno():
-   conn = conectar()
-   cursor = conn.cursor()
-
-   id_deletar = input("digite o ID do aluno: ")
-
-   if not id_deletar.isdigit():
-      print("digite um ID válido")
-      time.sleep(3)
-      return
-
-   try:
-      cursor.execute("DELETE FROM alunos WHERE id_aluno = %s",(id_deletar,))
-      conn.commit()
-
-      if cursor.rowcount > 0:
-         print("aluno deletado")
-         time.sleep(3)
-         return
-      else:
-         print("nenhum aluno com esse ID")
-         time.sleep(3)
-         return
-   except Error as e:
-      print(f"erro ao deletar aluno: {e}")
-      time.sleep(10)
-      return
-   finally:
-      cursor.close()
-      conn.close()
 
 def menuProf():
     while True:
@@ -65,8 +29,9 @@ def menuProf():
      print("1-mudar nota")
      print("2-ver a lista de alunos")
      print("3-ver a lista de professores")
-     print("4-adicionar nota")
-     print("5-voltar para a tela de login")
+     print("4-ver a lista de notas")
+     print("5-adicionar nota")
+     print("6-voltar para a tela de login")
      print("0-sair do sistema")
 
      escolha = input("qual sera sua escolha: ")
@@ -81,9 +46,12 @@ def menuProf():
          listaProf()
      
      elif escolha == "4":
-         notas()
+        listaNotas()
 
      elif escolha == "5":
+         adicionarNota()
+
+     elif escolha == "6":
         print("voltando...")
         time.sleep(2)
         login()
@@ -94,6 +62,7 @@ def menuProf():
         break
      else:
         print("erro\n")
+        time.sleep(2)
 
 def materias():
    print
@@ -104,7 +73,7 @@ def menuAluno():
      print("\n====================")
      print("bem vindo ao sistema")
      print("====================\n")
-     print("1-")
+     print("1-ver notas")
      print("2-ver materias")
      print("3-ver os professores")
      print("4-voltar para a tela de login")
@@ -112,9 +81,15 @@ def menuAluno():
 
      escolha = input("qual sera sua escolha: ")
 
+     if escolha == "1":
+        listaNotas()
+
      if escolha == "2":
         materias()
     
+     elif escolha == "3":
+        listaProf()
+
      elif escolha == "4":
         print("\nvoltando...")
         time.sleep(2)
@@ -126,6 +101,7 @@ def menuAluno():
         break
      else:
         print("erro")
+        time.sleep(2)
 
 def menuSecretaria():
    while True:
@@ -148,13 +124,15 @@ def menuSecretaria():
          deletarAluno()
 
       elif escolha == "2":
-         print("oi2")
+         listaProf()
+         deletarProfessor()
 
       elif escolha == "3":
-         cadastro()
+         cadastroAluno()
 
       elif escolha == "4":
          cadastroProfessor()
+
 
       elif escolha == "7":
         print("voltando...")
@@ -163,6 +141,7 @@ def menuSecretaria():
 
       else:
          print("erro\n")
+         time.sleep(2)
 
 def login():
   while True:  
