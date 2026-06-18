@@ -95,11 +95,6 @@ def listaCursos():
 
    cursor.execute("SELECT * FROM cursos ORDER BY id_curso ASC")
    resultados = cursor.fetchall()
-
-   if not resultados:
-      print("nenhum curso no sistema")
-      time.sleep(3)
-      return
    
    for curso in resultados:
       print(f"ID: {curso[0]} || Curso: {curso[1]}")
@@ -118,4 +113,34 @@ def listaMaterias():
       print(f"ID: {materia[0]} || Matéria: {materia[1]}")
 
    time.sleep(3)
+   return
+
+def listaMedia():
+   conn = conectar()
+   cursor = conn.cursor()
+
+   listaAluno()
+   try:
+      id_busca = int(input("Digite o ID do aluno: "))
+   except ValueError():
+      print("Digite um ID válido")
+      time.sleep(2)
+      return
+   
+   cursor.execute("""
+      SELECT
+         a.id_aluno,
+         a.nome,
+         ROUND(AVG(n.nota), 2) AS media
+      FROM alunos a
+      INNER JOIN notas n ON n.fk_idaluno = a.id_aluno
+      WHERE id_aluno = %s
+      GROUP BY a.id_aluno, a.nome
+   """, (id_busca,))
+
+   resultados = cursor.fetchall()
+
+   for id_aluno, nome, media in resultados:
+      print(f"\nID do aluno: {id_aluno} || Nome: {nome} || Média: {media}")
+   time.sleep(5)
    return
