@@ -6,244 +6,6 @@ from def_loading import *
 from defs_validacoes import *
 from defs_cadastros import *
  
-<<<<<<< HEAD  
-import random 
-import time
-import os
-delay = random.randint(1, 6)
-alunosC = []
-profC = []
- 
-import mysql.connector
-from mysql.connector import Error
-
-conn = mysql.connector.connect(
-            host = "127.0.0.1",
-            user = "root",
-            password = "Senac2026",
-)
-
-cursor = conn.cursor()
-
-cursor.execute("""
-    CREATE DATABASE IF NOT EXISTS escola;
-    """)
-
-cursor.execute("USE escola")
-
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS alunos (
-        id_aluno INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(100) NOT NULL,
-        idade INT NOT NULL,
-        curso VARCHAR(50) NOT NULL
-    );
-""")
-
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS professores (
-        id_professor INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(100) NOT NULL,
-        idade INT NOT NULL,
-        materia VARCHAR(50) NOT NULL,
-        curso VARCHAR(200) NOT NULL
-    );
-""")
-
-def conectar():  
-    try:
-        conexão = mysql.connector.connect(
-            host = "127.0.0.1",
-            user = "root",
-            password = "Senac2026",
-            database = "escola",
-        )
-        return conexão
-    except Error as e:
-        print(f"Erro ao conectar ao MySQL:{e}")
-        return None
-
-def cadastroProfessor():
-    conn = conectar()
-    cursor = conn.cursor()
-
-    loading()
-
-    professor = input("nome do professor: ")
-    turmaP = input("qual a turma que ele da aula: ")
-    idadeP = input("qual a idade: ")
-    materia = input("qual é a materia que da aula: ")
-
-    if validarProf(professor,turmaP,idadeP,materia):
-       profs = [professor,int(turmaP),int(idadeP),materia]
-
-       print("\nprofessor cadastrado com sucesso")
-       print("====================")
-       time.sleep(3)
-       return
-     
-
-def cadastro():
-    conn = conectar()
-    cursor = conn.cursor()
-
-    loading()
-
-    sql = "INSERT INTO alunos (nome, idade, curso) VALUES (%s, %s, %s)"
-
-    nome = input("qual aluno você quer cadastrar: ")
-    idade = input("qual a idade: ")
-    curso = input("qual é o curso: ") 
-
-    try:
-        if validation(nome,idade,curso):
-            cursor.execute(sql, (nome,idade,curso))
-            conn.commit()
-            print("\nusuario cadastrado com sucesso")
-            time.sleep(3)
-            return
-    except Error as e:
-        print(f"erro no cadastro: {e}")
-        time.sleep(3)
-        return
-    finally:
-       cursor.close()
-       conn.close()
-
-def loading():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛⬛") 
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦⬛⬛⬛⬛⬛⬛⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦🟦🟦🟦🟦⬛⬛⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦🟦🟦🟦🟦⬛⬛⬛⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦⬛")
-    time.sleep(delay)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("iniciando cadastro")
-    print("🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦🟦")
-    time.sleep(0.5)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("==============")
-
-
-def validation(nome,idade,curso):
-    if nome.strip() == "":
-        print("erro encontrado (1)")
-        time.sleep(3)
-        return False
-    
-    if curso.strip() == "":
-       print("erro encontrado (2)")
-       time.sleep(3)
-       return False
-    
-    if not idade.isdigit():
-        print("erro encontrado (3)")
-        time.sleep(3)
-        return False
-
-    if not nome.replace(" ", "").isalpha():
-        print("erro encontrado (4)") 
-        time.sleep(3)
-        return False
-    
-    if not curso.replace(" ", "").isalpha():
-       print("erro encontrado (5)")
-       time.sleep(3)
-       return False
-    
-    return True
- 
-def validarProf(professor, turmaP, idadeP, materia):
-  
-    if professor.strip() == "":
-       print("erro encontrado (1)")
-       time.sleep(3)
-       return
- 
-    if turmaP.strip() == "":
-       print("erro encontrado (2)")
-       time.sleep(3)
-       return False 
-    
-    if idadeP.strip() == "":
-       print("erro encontrado (3)")
-       time.sleep(3)
-       return False
-    
-    if materia.strip() == "":
-       print("erro encontrado (4)")
-       time.sleep(3)
-       return False
-    
-    if not professor.isalpha():
-        print("erro encontrado (5)")
-        time.sleep(3)
-        return False
-
-    if not materia.isalpha():
-        print("erro encontrado (6)")
-        time.sleep(3)
-        return False
-
-    if not turmaP.isdigit() or not idadeP.isdigit():
-        print("erro encontrado (7)")
-        time.sleep(3)
-        return False
-    return True
-
-def validation(nome,idade,curso):
-    if nome.strip() == "":
-        print("erro encontrado (1)")
-        time.sleep(3)
-        return False
-    
-    if curso.strip() == "":
-       print("erro encontrado (2)")
-       time.sleep(3)
-       return False
-    
-    if not idade.isdigit():
-        print("erro encontrado (3)")
-        time.sleep(3)
-        return False
-
-    if not nome.replace(" ", "").isalpha():
-        print("erro encontrado (4)")
-        time.sleep(3)
-        return False
-    
-    if not curso.replace(" ", "").isalpha():
-       print("erro encontrado (5)")
-       time.sleep(3)
-       return False
-    
-    return True
- 
-
-
-=======
 delay = random.randint(1 , 2)
 alunosC = []
 profC = []
@@ -251,7 +13,6 @@ profC = []
 import mysql.connector
 from mysql.connector import Error
 
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
 def lista():
     conn = conectar()
     cursor = conn.cursor()
@@ -364,13 +125,9 @@ def menuProf():
         time.sleep(2)
         break
      else:
-<<<<<<< HEAD
-        print("erro\n")
-=======
         os.system('cls' if os.name == 'nt' else 'clear')
         print("erro\n")
         time.sleep(2)
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
 
 def materias():
    print
@@ -402,13 +159,9 @@ def menuAluno():
         time.sleep(2)
         break
      else:
-<<<<<<< HEAD
-        print("erro")
-=======
         os.system('cls' if os.name == 'nt' else 'clear')
         print("erro\n")
         time.sleep(2)
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
 
 def menuSecretaria():
    while True:
@@ -434,7 +187,7 @@ def menuSecretaria():
          print("oi2")
 
       elif escolha == "3":
-         cadastro()
+         cadastroAluno()
 
       elif escolha == "4":
          cadastroProfessor()
@@ -445,13 +198,9 @@ def menuSecretaria():
         login()
 
       else:
-<<<<<<< HEAD
-         print("erro\n")
-=======
         os.system('cls' if os.name == 'nt' else 'clear')
         print("erro\n")
         time.sleep(2)
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
 
 def login():
   while True:  
@@ -476,8 +225,4 @@ def login():
       print("usuario não encontrado")
       break
 
-<<<<<<< HEAD
 login()
-=======
-login()
->>>>>>> 548f6ea3411296bf62feec4ab5f0b1b77785bf82
