@@ -7,7 +7,7 @@ from def_loading import *
 from defs_validacoes import *
 from defs_cadastros import *
  
-import random 
+import random  
 import time   
 import os
 delay = random.randint(1, 6)
@@ -16,7 +16,7 @@ profC = []
  
 import mysql.connector
 from mysql.connector import Error
- 
+   
 conn = mysql.connector.connect(
             host = "127.0.0.1",
             user = "root",
@@ -35,7 +35,7 @@ cursor.execute("""
     CREATE TABLE IF NOT EXISTS alunos (
         id_aluno INT AUTO_INCREMENT PRIMARY KEY,
         nome VARCHAR(100) NOT NULL,
-        idade INT NOT NULL,
+        idade INT NOT NULL,  
         curso VARCHAR(50) NOT NULL
     );   
 """) 
@@ -80,7 +80,7 @@ def cadastroProfessor():
        print("\nprofessor cadastrado com sucesso")
        print("====================")
        time.sleep(3)
-       return
+       return   
      
 
 def cadastro():
@@ -105,7 +105,7 @@ def cadastro():
     except Error as e:
         print(f"erro no cadastro: {e}")
         time.sleep(3)
-        return
+        return 
     finally:
        cursor.close()
        conn.close()
@@ -130,7 +130,7 @@ def loading():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("iniciando cadastro")
     print("🟦🟦🟦🟦🟦🟦🟦🟦🟦⬛⬛")
-    time.sleep(delay)
+    time.sleep(delay)  
     os.system('cls' if os.name == 'nt' else 'clear')
     print("iniciando cadastro")
     print("🟦🟦🟦🟦🟦🟦🟦⬛⬛⬛⬛")
@@ -146,7 +146,7 @@ def loading():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("==============")
 
-
+ 
 def validation(nome,idade,curso):
     if nome.strip() == "":
         print("erro encontrado (1)")
@@ -161,7 +161,7 @@ def validation(nome,idade,curso):
     if not idade.isdigit():
         print("erro encontrado (3)")
         time.sleep(3)
-        return False
+        return False  
 
     if not nome.replace(" ", "").isalpha():
         print("erro encontrado (4)") 
@@ -181,7 +181,7 @@ def validarProf(professor, turmaP, idadeP, materia):
        print("erro encontrado (1)")
        time.sleep(3)
        return
- 
+  
     if turmaP.strip() == "":
        print("erro encontrado (2)")
        time.sleep(3)

@@ -119,3 +119,33 @@ def listaMaterias():
 
    time.sleep(3)
    return
+
+def listaMedia():
+   conn = conectar()
+   cursor = conn.cursor()
+
+   listaAluno()
+   try:
+      id_busca = int(input("Digite o ID do aluno: "))
+   except ValueError():
+      print("Digite um ID válido")
+      time.sleep(2)
+      return
+   
+   cursor.execute("""
+      SELECT
+         a.id_aluno,
+         a.nome,
+         ROUND(AVG(n.nota), 2) AS media
+      FROM alunos a
+      INNER JOIN notas n ON n.fk_idaluno = a.id_aluno
+      WHERE id_aluno = %s
+      GROUP BY a.id_aluno, a.nome
+   """, (id_busca,))
+
+   resultados = cursor.fetchall()
+
+   for id_aluno, nome, media in resultados:
+      print(f"\nID do aluno: {id_aluno} || Nome: {nome} || Média: {media}")
+   time.sleep(5)
+   return
