@@ -74,41 +74,6 @@ def menuProf():
         time.sleep(2)
 
 
-def menuAluno():
-    while True:
-     os.system('cls' if os.name == 'nt' else 'clear')
-     print("\n|====================")
-     print("|𝙱𝙴𝙼 𝚅𝙸𝙽𝙳𝙾 𝙰𝙾 𝚂𝙸𝚂𝚃𝙴𝙼𝙰")
-     print("|====================\n")
-     print("| 1 - ver notas")
-     print("| 2 - ver materias")
-     print("| 3 - ver os professores")
-     print("| 4 - voltar para a tela de login")
-     print("| 0 - sair")
-
-     escolha = input("|   - qual sera sua escolha: ")
-
-     if escolha == "1":
-        listaNotas()
-
-     if escolha == "2":
-        listaMaterias()
-    
-     elif escolha == "3":
-        listaProf()
-
-     elif escolha == "5":
-        print("\n| voltando...")
-        time.sleep(2)
-        login()
-
-     elif escolha == "0":
-        print("| saindo...")
-        time.sleep(2)
-        break
-     else:
-        print("| erro")
-        time.sleep(2)
 
 def menuSecretaria():
    while True:
@@ -124,7 +89,7 @@ def menuSecretaria():
       print("| 6 - fazer alteração na conta do professor")
       print("| 0 - voltar para a tela de login")
 
-      escolha = input("\nqual sera sua escolha: ")
+      escolha = input("|    - qual sera sua escolha: ")
 
       if escolha == "1":
          listaAluno()
@@ -171,8 +136,6 @@ def login():
    elif usuario == "secretaria":
       menuSecretaria()
 
-   elif usuario == "aluno":
-      menuAluno()
 
    else:
       print("| usuario não encontrado")

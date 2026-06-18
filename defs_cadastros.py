@@ -23,7 +23,7 @@ def cadastroProfessor():
         if validarProf(professor,idadeP,materia,curso):
             cursor.execute(sql, (professor,idadeP,materia,curso))
             conn.commit()
-            print("\n| professor cadastrado com sucesso")
+            print("\n| 𝙿𝚁𝙾𝙵𝙴𝚂𝚂𝙾𝚁 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙾 𝙲𝙾𝙼 𝚂𝚄𝙲𝙴𝚂𝚂𝙾")
             print("| ====================")
             time.sleep(3)
             return

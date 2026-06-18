@@ -20,12 +20,12 @@ def listaAluno():
     resultados = cursor.fetchall()
 
     if not resultados:
-       print("nenhum aluno cadastrado")
+       print("| nenhum aluno cadastrado")
        time.sleep(3)
        return
 
     for id_aluno, nome, idade, curso in resultados:
-       print(f"\nID: {id_aluno} || Nome: {nome} || Idade: {idade} || Curso: {curso}")
+       print(f"| ID: {id_aluno} | Nome: {nome} | Idade: {idade} | Curso: {curso}")
 
     time.sleep(5)
     return
@@ -50,12 +50,12 @@ def listaProf():
    resultados = cursor.fetchall()
 
    if not resultados:
-      print("nenhum professor cadastrado")
+      print("| 𝙽𝙴𝙽𝙷𝚄𝙼 𝙿𝚁𝙾𝙵𝙴𝚂𝚂𝙾𝚁 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙾")
       time.sleep(3)
       return
 
    for id_professor, nome, idade, materia, curso in resultados:
-      print(f"\nID: {id_professor} || Nome: {nome} || Idade: {idade} || Matéria: {materia} || Curso: {curso}")
+      print(f"| ID: {id_professor} | Nome: {nome} | Idade: {idade} | Matéria: {materia} | Curso: {curso}")
 
    time.sleep(5)
    return
@@ -88,14 +88,15 @@ def listaNotas():
 
    resultados = cursor.fetchall()
    if not resultados:
-      print("Não existem notas no sistema")
-      time.sleep(2)
+      print("| 𝙽𝚄𝙽𝙷𝚄𝙼𝙰 𝙽𝙾𝚃𝙰 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙰")
+      time.sleep(3)
       return
    
-   for id_nota, nome, nota, materia in resultados:
-      print(f"\nID da Nota: {id_nota} || Aluno: {nome} || Nota: {nota} || Matéria: {materia}")
-      time.sleep(5)
-      return
+   for id_nota, nota, materia, aluno in resultados:
+      print(f"| ID: {id_nota} | Nota: {nota} | Matéria: {materia} | Aluno: {aluno}")
+
+   time.sleep(5)
+   return
 
 def listaCursos():
    conn = conectar()
@@ -103,9 +104,14 @@ def listaCursos():
 
    cursor.execute("SELECT * FROM cursos ORDER BY id_curso ASC")
    resultados = cursor.fetchall()
+
+   if not resultados:
+      print("| 𝙽𝚄𝙽𝙷𝚄𝙼 𝙲𝚄𝚁𝚂𝙾 𝙽𝙾 𝚂𝙸𝚂𝚃𝙴𝙼𝙰")
+      time.sleep(3)
+      return
    
    for curso in resultados:
-      print(f"ID: {curso[0]} || Curso: {curso[1]}")
+      print(f"| ID: {curso[0]} | Curso: {curso[1]}")
 
    time.sleep(3)
    return
@@ -118,7 +124,7 @@ def listaMaterias():
    resultados = cursor.fetchall()
 
    for materia in resultados:
-      print(f"ID: {materia[0]} || Matéria: {materia[1]}")
+      print(f"| ID: {materia[0]} | Matéria: {materia[1]}")
 
    time.sleep(3)
    return

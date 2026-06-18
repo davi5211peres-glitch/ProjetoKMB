@@ -432,7 +432,7 @@ def menuSecretaria():
          print("oi2")
 
       elif escolha == "3":
-         cadastro()
+         cadastroAluno()
 
       elif escolha == "4":
          cadastroProfessor()

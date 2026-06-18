@@ -14,17 +14,17 @@ def mudarAluno():
     try:
         id_busca = int(input("Digite o ID do aluno que deseja mudar: "))
     except ValueError:
-        print("Digite um ID válido")
+        print("| 𝙳𝙸𝙶𝙸𝚃𝙴 𝚄𝙼 𝙸𝙳 𝚅𝙰𝙻𝙸𝙳𝙾")
         time.sleep(2)
         return
     
-    novo_nome = input("digite o novo nome (vazio para não alterar): ")
-    nova_idade = input("digite a nova idade (vazio para não alterar): ")
+    novo_nome = input("| 𝙳𝙸𝙶𝙸𝚃𝙴 𝙾 𝙽𝙾𝚅𝙾 𝙽𝙾𝙼𝙴 (vazio para não alterar): ")
+    nova_idade = input("| 𝙳𝙸𝙶𝙸𝚃𝙴 𝙰 𝙽𝙾𝚅𝙰 𝙸𝙳𝙰𝙳𝙴 (vazio para não alterar): ")
     listaCursos()
     try:
-        novo_curso = int(input("digite o ID do novo curso (vazio para não alterar): "))
+        novo_curso = int(input("| 𝙳𝙸𝙶𝙸𝚃𝙴 𝙾 𝙸𝙳 𝙳𝙾 𝙽𝙾𝚅𝙾 𝙲𝚄𝚁𝚂𝙾 (vazio para não alterar): "))
     except ValueError:
-        print("digite um ID válido")
+        print("| 𝙳𝙸𝙶𝙸𝚃𝙴 𝚄𝙼 𝙸𝙳 𝚅𝙰𝙻𝙸𝙳𝙾")
         time.sleep(2)
         return
 
@@ -38,7 +38,7 @@ def mudarAluno():
         cursor.execute("UPDATE alunos SET fk_idcurso = %s WHERE id_aluno = %s", (novo_curso, id_busca))
 
     conn.commit()
-    print("\naluno atualizado com sucesso")
+    print("\n| 𝙰𝙻𝚄𝙽𝙾 𝙰𝚃𝚄𝙰𝙻𝙸𝚉𝙰𝙳𝙾 𝙲𝙾𝙼 𝚂𝚄𝙲𝙴𝚂𝚂𝙾")
     time.sleep(2)
     cursor.close()
     conn.close()
