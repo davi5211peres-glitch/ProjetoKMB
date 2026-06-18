@@ -64,30 +64,38 @@ def listaNotas():
    conn = conectar()
    cursor = conn.cursor()
 
+   listaAluno()
+   try:
+      selectAluno = int(input("Digite o ID do aluno: "))
+   except ValueError:
+      print("Digite um ID válido")
+      time.sleep(2)
+      return
+   
    cursor.execute("""
       SELECT
          n.id_nota,
-         n.nota,
-         m.materia,
-         a.nome
+         a.nome,
+         ROUND(n.nota, 2),
+         m.materia
       FROM notas n
-      INNER JOIN materias m
-         ON n.fk_idmateria = m.id_materia
       INNER JOIN alunos a
          ON n.fk_idaluno = a.id_aluno
-   """)
-   resultados = cursor.fetchall()
+      INNER JOIN materias m
+         ON n.fk_idmateria = m.id_materia
+      WHERE id_aluno = %s
+   """, (selectAluno,))
 
+   resultados = cursor.fetchall()
    if not resultados:
-      print("nenhuma nota cadastrada")
-      time.sleep(3)
+      print("Não existem notas no sistema")
+      time.sleep(2)
       return
    
-   for id_nota, nota, materia, aluno in resultados:
-      print(f"\nID: {id_nota} || Nota: {nota} || Matéria: {materia} || Aluno: {aluno}")
-
-   time.sleep(5)
-   return
+   for id_nota, nome, nota, materia in resultados:
+      print(f"\nID da Nota: {id_nota} || Aluno: {nome} || Nota: {nota} || Matéria: {materia}")
+      time.sleep(5)
+      return
 
 def listaCursos():
    conn = conectar()
