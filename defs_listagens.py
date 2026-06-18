@@ -141,6 +141,13 @@ def listaMedia():
    resultados = cursor.fetchall()
 
    for id_aluno, nome, media in resultados:
-      print(f"\nID do aluno: {id_aluno} || Nome: {nome} || Média: {media}")
+      if media >= 7 and media <= 10:
+         situacao = "aprovado"
+      elif media < 7 and media >=4:
+         situacao = "recuperação"
+      elif media < 4 and media >= 0:
+         situacao = "reprovado"
+      print(f"\nID do aluno: {id_aluno} || Nome: {nome} || Média: {media} || Situação: {situacao}")
+
    time.sleep(5)
    return
