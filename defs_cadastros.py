@@ -119,9 +119,20 @@ def adicionarNota():
 
       if materia.strip() == "" or not materia.replace(" ", "").isalpha():
          print("| erro no cadastro: campo vazio ou matéria inválida")
+      listaMaterias()
+      try:
+         selectMateria = int(input("\ndigite o ID da matéria: "))
+      except ValueError:
+         print("digite um ID válido")
          time.sleep(2)
          return
-      
+
+      cursor.execute("SELECT id_materia FROM materias WHERE id_materia = %s", (selectMateria,))
+      if not cursor.fetchone():
+         print("ID não existe")
+         time.sleep(2)
+         return
+
       try:
          nota = float(input("\n| digite a nota do aluno (ex: 8.5): "))
          if nota < 0 or nota > 10:
@@ -138,7 +149,7 @@ def adicionarNota():
           INSERT INTO notas (notas, materia, fk_idaluno)
           VALUES (%s, %s, %s)
          """
-         valores = (nota, materia, selectAluno)
+         valores = (nota, selectMateria, selectAluno)
 
          cursor.execute(sql, valores)
          conn.commit()
