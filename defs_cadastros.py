@@ -107,10 +107,6 @@ def adicionarNota():
          time.sleep(2)
          return
       
-      materia = input("\n| digite a matéria: ")
-
-      if materia.strip() == "" or not materia.replace(" ", "").isalpha():
-         print("| erro no cadastro: campo vazio ou matéria inválida")
       listaMaterias()
       try:
          selectMateria = int(input("\ndigite o ID da matéria: "))
@@ -138,7 +134,7 @@ def adicionarNota():
       
       try:
          sql = """
-          INSERT INTO notas (notas, materia, fk_idaluno)
+          INSERT INTO notas (nota, fk_idmateria, fk_idaluno)
           VALUES (%s, %s, %s)
          """
          valores = (nota, selectMateria, selectAluno)
