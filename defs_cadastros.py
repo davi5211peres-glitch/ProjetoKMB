@@ -92,7 +92,6 @@ def adicionarNota():
          return
       
       listaAluno()
-      time.sleep(2)
       
       try:
          selectAluno = int(input("\n| qual o ID do aluno que deseja adicionar nota?: "))
