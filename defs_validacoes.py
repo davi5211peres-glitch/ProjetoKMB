@@ -1,4 +1,5 @@
 import time
+from MYSQLxPYTHON import conectar
 
 def validation(nome,idade,id_curso):
     """valida dados do aluno"""
@@ -85,5 +86,4 @@ def validarProf(professor, idadeP, materia, cursoP):
         time.sleep(3)
         return False
     
-
     return True

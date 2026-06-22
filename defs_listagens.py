@@ -2,6 +2,7 @@ import mysql.connector
 import time
 from mysql.connector import Error
 from MYSQLxPYTHON import conectar
+from defs_validacoes import *
 
 def listaAluno():
     conn = conectar()
@@ -88,7 +89,7 @@ def listaNotas():
 
    resultados = cursor.fetchall()
    if not resultados:
-      print("| 𝙽𝚄𝙽𝙷𝚄𝙼𝙰 𝙽𝙾𝚃𝙰 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙰")
+      print("| 𝙽E𝙽𝙷𝚄𝙼𝙰 𝙽𝙾𝚃𝙰 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙰")
       time.sleep(3)
       return
    
@@ -106,7 +107,7 @@ def listaCursos():
    resultados = cursor.fetchall()
 
    if not resultados:
-      print("| 𝙽𝚄𝙽𝙷𝚄𝙼 𝙲𝚄𝚁𝚂𝙾 𝙽𝙾 𝚂𝙸𝚂𝚃𝙴𝙼𝙰")
+      print("| 𝙽E𝙽𝙷𝚄𝙼 𝙲𝚄𝚁𝚂𝙾 𝙽𝙾 𝚂𝙸𝚂𝚃𝙴𝙼𝙰")
       time.sleep(3)
       return
    
@@ -140,7 +141,7 @@ def listaMedia():
       print("Digite um ID válido")
       time.sleep(2)
       return
-   
+
    cursor.execute("""
       SELECT
          a.id_aluno,
@@ -154,6 +155,11 @@ def listaMedia():
 
    resultados = cursor.fetchall()
 
+   if not resultados:
+      print("sem aluno ou notas cadastradas")
+      time.sleep(2)
+      return
+
    for id_aluno, nome, media in resultados:
       if media >= 7 and media <= 10:
          situacao = "aprovado"
@@ -161,7 +167,7 @@ def listaMedia():
          situacao = "recuperação"
       elif media < 4 and media >= 0:
          situacao = "reprovado"
-      print(f"\nID do aluno: {id_aluno} || Nome: {nome} || Média: {media} || Situação: {situacao}")
+      print(f"\n| ID do aluno: {id_aluno} | Nome: {nome} | Média: {media} | Situação: {situacao}")
 
    time.sleep(5)
    return
