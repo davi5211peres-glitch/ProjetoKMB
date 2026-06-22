@@ -1,6 +1,9 @@
-import random
+import random 
+#gera numeros aleatorios
 import time
+#controla o tempo
 import os
+#interage com o sistema
 from MYSQLxPYTHON import *
 from def_loading import *
 from defs_validacoes import *
@@ -10,15 +13,13 @@ from defs_deletar import *
 from def_atualizacoes import *
 
 delay = random.randint(1 , 2)
-alunosC = []
-profC = []
  
 import mysql.connector
 from mysql.connector import Error
 
 #oi
 #marca de presença
-#shique shique show
+
 
 def menuProf():
     while True:
@@ -41,8 +42,8 @@ def menuProf():
 
      if escolha == "1":
          mudarNota()
-
-     if escolha == "2":
+#def na nota
+     elif escolha == "2":
          listaAluno()
 
      elif escolha == "3":
@@ -141,5 +142,4 @@ def login():
       print("| usuario não encontrado")
       time.sleep(2)
       continue
-   
-   break
+

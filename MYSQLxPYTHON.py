@@ -1,12 +1,12 @@
 import mysql.connector
 from mysql.connector import Error
-    
+#importa
 conn = mysql.connector.connect(
             host = "127.0.0.1",
             user = "root",
             password = "Senac2026",
 )
-
+#conexão inicial com mysql
 cursor = conn.cursor()
 
 cursor.execute("""
@@ -18,6 +18,7 @@ cursor.execute("USE escola")
 
 
 def conectar():
+#def é definição da função
     try:
         conexão = mysql.connector.connect(
             host = "127.0.0.1",
@@ -37,6 +38,7 @@ cursor.execute("""
         curso VARCHAR(100) NOT NULL UNIQUE
     )
 """)
+#executando o comando que cria uma tabela de cursos
 
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS materias (
@@ -44,6 +46,7 @@ cursor.execute("""
         materia VARCHAR(100) NOT NULL UNIQUE           
     )
 """)
+#de materias
 
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS alunos (
@@ -57,6 +60,7 @@ cursor.execute("""
             ON DELETE CASCADE
     )
 """)
+#ela pega os dados de uma tabela de fora, nesse caso ela ta pegando um dado da tabela de cursos, que é o id curso
 
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS professores(
