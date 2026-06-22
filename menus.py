@@ -1,4 +1,4 @@
-import random 
+import random
 import time
 import os
 from MYSQLxPYTHON import *
@@ -18,7 +18,7 @@ from mysql.connector import Error
 
 #oi
 #marca de presença
-
+#shique shique show
 
 def menuProf():
     while True:
