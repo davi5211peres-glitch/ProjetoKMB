@@ -9,7 +9,7 @@ from def_loading import *
 from defs_validacoes import *
 from defs_cadastros import *
 from defs_listagens import *
-from defs_deletar import *
+from defs_deletar import *  
 from def_atualizacoes import *
 
 delay = random.randint(1 , 2)
@@ -19,7 +19,7 @@ from mysql.connector import Error
 
 #oi
 #marca de presença
-
+   
 
 def menuProf():
     while True:
