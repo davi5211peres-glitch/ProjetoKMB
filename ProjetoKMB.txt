@@ -1,0 +1,10 @@
+Nome do projeto: ProjetoKMB
+Integrantes do grupo: Caio Gomes, Davi Péres e Maria Júlia
+
+O que o sistema faz:
+
+
+Funcionalidades:
+
+
+Como usar:
