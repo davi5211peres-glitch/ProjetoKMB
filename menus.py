@@ -29,13 +29,11 @@ def menuProf():
      print("|====================")
 
      print("| 1 - mudar nota")
-     print("| 2 - ver a lista de alunos")
-     print("| 3 - ver a lista de professores")
+     print("| 2 - adicionar nota")
+     print("| 3 - ver a lista de alunos")
      print("| 4 - ver a lista de notas")
-     print("| 5 - ver a lista de matérias")
-     print("| 6 - ver a média de um aluno")
-     print("| 7 - adicionar nota")
-     print("| 8 - voltar para a tela de login")
+     print("| 5 - ver a média de um aluno")
+     print("| 6 - voltar para a tela de login")
      print("| 0 - sair do sistema")
 
      escolha = input("|   - qual sera sua escolha: ")
@@ -44,24 +42,18 @@ def menuProf():
          mudarNota()
 #def na nota
      elif escolha == "2":
-         listaAluno()
+         adicionarNota()
 
      elif escolha == "3":
-         listaProf()
+         listaAluno()
      
      elif escolha == "4":
         listaNotas()
 
      elif escolha == "5":
-        listaMaterias()
-
-     elif escolha == "6":
         listaMedia()
 
-     elif escolha == "7":
-         adicionarNota()
-
-     elif escolha == "8":
+     elif escolha == "6":
         print("| voltando...")
         time.sleep(2)
         login()
@@ -88,6 +80,9 @@ def menuSecretaria():
       print("| 4 - cadastrar professor")
       print("| 5 - fazer alteração na conta do aluno")
       print("| 6 - fazer alteração na conta do professor")
+      print("| 7 - ver lista de alunos")
+      print("| 8 - ver lista de professores")
+      print("| 9 - ver lista de matérias")
       print("| 0 - voltar para a tela de login")
 
       escolha = input("|    - qual sera sua escolha: ")
@@ -111,6 +106,15 @@ def menuSecretaria():
 
       elif escolha == "6":
          mudarProf()
+
+      elif escolha == "7":
+         listaAluno()
+      
+      elif escolha == "8":
+         listaProf()
+
+      elif escolha == "9":
+         listaMaterias()
 
       elif escolha == "0":
         print("| voltando...")
