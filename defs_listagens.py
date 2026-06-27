@@ -69,7 +69,7 @@ def listaNotas():
    try:
       selectAluno = int(input("Digite o ID do aluno: "))
    except ValueError:
-      print("Digite um ID válido")
+      print("| Digite um ID válido")
       time.sleep(2)
       return
    
@@ -136,9 +136,9 @@ def listaMedia():
 
    listaAluno()
    try:
-      id_busca = int(input("Digite o ID do aluno: "))
+      id_busca = int(input("| Digite o ID do aluno: "))
    except ValueError():
-      print("Digite um ID válido")
+      print("| Digite um ID válido")
       time.sleep(2)
       return
 
@@ -156,7 +156,7 @@ def listaMedia():
    resultados = cursor.fetchall()
 
    if not resultados:
-      print("sem aluno ou notas cadastradas")
+      print("| sem aluno ou notas cadastradas")
       time.sleep(2)
       return
 
