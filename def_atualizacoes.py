@@ -12,7 +12,7 @@ def mudarAluno():
 
     listaAluno()
     try:
-        id_busca = int(input("Digite o ID do aluno que deseja mudar: "))
+        id_busca = int(input("| Digite o ID do aluno que deseja mudar: "))
     except ValueError:
         print("| 𝙳𝙸𝙶𝙸𝚃𝙴 𝚄𝙼 𝙸𝙳 𝚅𝙰𝙻𝙸𝙳𝙾")
         time.sleep(2)
@@ -50,25 +50,25 @@ def mudarProf():
 
     listaProf()
     try:
-        id_buscaP = int(input("Digite o ID do professor que deseja mudar: "))
+        id_buscaP = int(input("| Digite o ID do professor que deseja mudar: "))
     except ValueError:
-        print("Digite um ID válido")
+        print("| Digite um ID válido")
         time.sleep(2)
         return
     
-    novo_nome = input("Digite o novo nome (vazio para não alterar): ")
-    nova_idade = input("Digite a nova idade (vazio para não alterar): ")
+    novo_nome = input("| Digite o novo nome (vazio para não alterar): ")
+    nova_idade = input("| Digite a nova idade (vazio para não alterar): ")
     listaMaterias()
     try:
-        id_buscaM = int(input("Digite o ID da matéria (vazio para não alterar): "))
+        id_buscaM = int(input("| Digite o ID da matéria (vazio para não alterar): "))
     except ValueError:
-        print("Digite um ID válido")
+        print("| Digite um ID válido")
         time.sleep(2)
         return
     
     listaCursos()
     try:
-        id_buscaC = int(input("Digite o ID da matéria (vazio para não alterar): "))
+        id_buscaC = int(input("| Digite o ID da matéria (vazio para não alterar): "))
     except ValueError:
         print("Digite um ID válido")
         time.sleep(2)
@@ -87,7 +87,7 @@ def mudarProf():
         cursor.execute("UPDATE professores SET fk_idcurso = %s WHERE id_professor = %s", (id_buscaC, id_buscaP))
 
     conn.commit()
-    print("\nprofessor atualizado com sucesso")
+    print("\n| professor atualizado com sucesso")
     time.sleep(2)
     cursor.close()
     conn.close()
@@ -99,24 +99,24 @@ def mudarNota():
 
     listaNotas()
     try:
-        id_buscaN = int(input("Digite o ID da nota: "))
+        id_buscaN = int(input("| Digite o ID da nota: "))
     except ValueError:
-        print("Digite um ID válido")
+        print("| Digite um ID válido")
         time.sleep(2)
         return
     
     try:
-        nova_nota = float(input("Digite a nova nota (ex: 8.5)(vazio para não alterar): "))
+        nova_nota = float(input("| Digite a nova nota (ex: 8.5)(vazio para não alterar): "))
     except ValueError:
-        print("Digite uma nota válida")
+        print("| Digite uma nota válida")
         time.sleep(2)
         return
 
     listaMaterias()
     try:
-        id_buscaM = int(input("Digite o ID da matéria (vazio para não alterar): "))
+        id_buscaM = int(input("| Digite o ID da matéria (vazio para não alterar): "))
     except ValueError:
-        print("Digite um ID válido")
+        print("| Digite um ID válido")
         time.sleep(2)
         return
     
@@ -127,7 +127,7 @@ def mudarNota():
         cursor.execute("UPDATE notas SET fk_idmateria = %s WHERE id_nota = %s", (id_buscaM, id_buscaN))
 
     conn.commit()
-    print("\nnota atualizada com sucesso")
+    print("\n| nota atualizada com sucesso")
     cursor.close()
     conn.close()
     return
