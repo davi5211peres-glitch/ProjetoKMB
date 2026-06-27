@@ -28,7 +28,7 @@ def conectar():
         )
         return conexão
     except Error as e:
-        print(f"Erro ao conectar ao MySQL:{e}")
+        print(f"| Erro ao conectar ao MySQL:{e}")
         return None
 
 
