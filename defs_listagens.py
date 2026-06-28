@@ -163,7 +163,7 @@ def listaMedia():
    for id_aluno, nome, media in resultados:
       if media >= 7 and media <= 10:
          situacao = "aprovado"
-      elif media < 7 and media >=4:
+      elif media < 7 and media >= 4:
          situacao = "recuperação"
       elif media < 4 and media >= 0:
          situacao = "reprovado"
