@@ -27,7 +27,7 @@ def cadastroProfessor():
             time.sleep(3)
             return
     except Error as e:
-        print(f"erro no cadastro: {e}")
+        print(f"| erro no cadastro: {e}")
         time.sleep(3)
         return
     finally:
@@ -72,8 +72,8 @@ def cadastroAluno():
             time.sleep(3)
             return
     except Error as e:
-        print(f"erro no cadastro: {e}")
-        time.sleep(3)
+        print(f"| erro no cadastro: {e}")
+        time.sleep(3) 
         return
     finally:
        cursor.close()
@@ -82,8 +82,8 @@ def cadastroAluno():
 def adicionarNota():
    conn = conectar()
    cursor = conn.cursor()
-
-   print("\n| aviso! para cadastrar uma nota deve haver pelo menos um aluno e um professor cadastrado")
+   print("|")
+   print("| aviso! para cadastrar uma nota deve haver pelo menos um aluno e um professor cadastrado")
    time.sleep(2)
    prosseguir = input("| deseja prosseguir? (s/n): ")
 
@@ -124,12 +124,13 @@ def adicionarNota():
 
       cursor.execute("SELECT id_materia FROM materias WHERE id_materia = %s", (selectMateria,))
       if not cursor.fetchone():
-         print("ID não existe")
+         print("| ID não existe")
          time.sleep(2)
          return
 
       try:
-         nota = float(input("\n| digite a nota do aluno (ex: 8.5): "))
+         print("|")
+         nota = float(input("| digite a nota do aluno (ex: 8.5): "))
          if nota < 0 or nota > 10:
             print("| nota deve ser entre 0 e 10.")
             time.sleep(2)
