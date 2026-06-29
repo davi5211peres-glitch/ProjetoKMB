@@ -47,6 +47,8 @@ def cadastroAluno():
     listaCursos()
     id_curso = input("| qual é o ID do curso: ").lower()
 
+    id_turma = input("| qual é o ID da turma: ").lower()
+
     cursor.execute("SELECT id_curso FROM cursos WHERE id_curso = %s", (id_curso,))
     if not cursor.fetchone():
        print("ID não existe")
