@@ -171,3 +171,16 @@ def listaMedia():
 
    time.sleep(5)
    return
+
+def listaTurmas():
+    conn = conectar()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM turmas ORDER BY id_turma ASC")
+    resultados = cursor.fetchall()
+
+    for turma in resultados:
+        print(f"\n| ID da Turma: {turma[0]} | Turma: {turma[1]}")
+
+    time.sleep(3)
+    return
