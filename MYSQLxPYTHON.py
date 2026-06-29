@@ -49,14 +49,26 @@ cursor.execute("""
 #de materias
 
 cursor.execute("""
+    CREATE TABLE IF NOT EXISTS turmas (
+        id_turma INT AUTO_INCREMENT PRIMARY KEY,
+        turma VARCHAR(50) NOT NULL UNIQUE
+    )
+""")
+#de turmas
+cursor.execute("""
     CREATE TABLE IF NOT EXISTS alunos (
         id_aluno INT AUTO_INCREMENT PRIMARY KEY,
         nome VARCHAR(100) NOT NULL,
         idade INT NOT NULL,
         fk_idcurso INT NOT NULL,
+        fk_idturma INT NOT NULL,
                
         FOREIGN KEY (fk_idcurso)
             REFERENCES cursos(id_curso)
+            ON DELETE CASCADE
+
+        FOREIGN KEY (fk_idturma)
+            REFERENCES turmas(id_turma)
             ON DELETE CASCADE
     )
 """)
@@ -102,6 +114,10 @@ cursor.execute("""
 cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Desenvolvimento de Sistemas');")
 cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Multimídia');")
 cursor.execute("INSERT IGNORE INTO cursos (curso) VALUES ('Jogos Digitais');")
+
+cursor.execute("INSERT IGNORE INTO turmas (turma) VALUES ('Primeiro Ano');")
+cursor.execute("INSERT IGNORE INTO turmas (turma) VALUES ('Segundo Ano');")
+cursor.execute("INSERT IGNORE INTO turmas (turma) VALUES ('Terceiro Ano');")
 
 cursor.execute("INSERT IGNORE INTO materias (materia) VALUES ('Artes')")
 cursor.execute("INSERT IGNORE INTO materias (materia) VALUES ('Algoritimos')")
