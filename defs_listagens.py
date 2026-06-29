@@ -67,7 +67,7 @@ def listaNotas():
 
    listaAluno()
    try:
-      selectAluno = int(input("Digite o ID do aluno: "))
+      selectAluno = int(input("| Digite o ID do aluno: "))
    except ValueError:
       print("| Digite um ID válido")
       time.sleep(2)
