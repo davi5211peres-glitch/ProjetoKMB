@@ -15,7 +15,6 @@ def cadastroProfessor():
     professor = input("| nome do professor: ")
     idadeP = input("| qual a idade: ")
     materia = input("| qual é a materia que da aula: ")
-    curso = input("| qual é o curso que ele da aula: ")
 
     sql = "INSERT INTO professores (nome, idade, materia, curso) VALUES (%s, %s, %s, %s)"
 
