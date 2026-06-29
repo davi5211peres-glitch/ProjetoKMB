@@ -47,6 +47,7 @@ def cadastroAluno():
     listaCursos()
     id_curso = input("| qual é o ID do curso: ").lower()
 
+    listaTurmas()
     id_turma = input("| qual é o ID da turma: ").lower()
 
     cursor.execute("SELECT id_curso FROM cursos WHERE id_curso = %s", (id_curso,))
@@ -55,11 +56,17 @@ def cadastroAluno():
        time.sleep(2)
        return
 
-    sql = "INSERT INTO alunos (nome, idade, fk_idcurso) VALUES (%s, %s, %s)"
+    cursor.execute("SELECT id_turma FROM turmas WHERE id_turma = %s", (id_turma,))
+    if not cursor.fetchone():
+       print("ID não existe")
+       time.sleep(2)
+       return
+
+    sql = "INSERT INTO alunos (nome, idade, fk_idcurso, fk_idturma) VALUES (%s, %s, %s, %s)"
 
     try:
-        if validation(nome,idade,id_curso):
-            cursor.execute(sql, (nome,idade,id_curso))
+        if validation(nome,idade,id_curso,id_turma):
+            cursor.execute(sql, (nome,idade,id_curso,id_turma))
             conn.commit()
             print("\n| aluno cadastrado com sucesso")
             time.sleep(3)
