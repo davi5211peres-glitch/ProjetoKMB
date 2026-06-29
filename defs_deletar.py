@@ -8,9 +8,9 @@ def deletarAluno():
    cursor = conn.cursor()
 
    try:
-      id_deletar = int(input("digite o ID do aluno: "))
+      id_deletar = int(input("| digite o ID do aluno: "))
    except ValueError:
-      print("digite um ID válido")
+      print("| digite um ID válido")
       time.sleep(3)
       return
 
@@ -19,15 +19,15 @@ def deletarAluno():
       conn.commit()
 
       if cursor.rowcount > 0:
-         print("aluno deletado")
+         print("| aluno deletado")
          time.sleep(3)
          return
       else:
-         print("nenhum aluno com esse ID")
+         print("| nenhum aluno com esse ID")
          time.sleep(3)
          return
    except Error as e:
-      print(f"erro ao deletar aluno: {e}")
+      print(f"| erro ao deletar aluno: {e}")
       time.sleep(5)
       return
    finally:
@@ -39,9 +39,9 @@ def deletarProfessor():
    cursor = conn.cursor()
 
    try:
-      id_deletar = int(input("digite o ID do professor: "))
+      id_deletar = int(input("| digite o ID do professor: "))
    except ValueError:
-      print("digite um ID válido")
+      print("| digite um ID válido")
       time.sleep(3)
       return
 
@@ -50,15 +50,15 @@ def deletarProfessor():
       conn.commit()
 
       if cursor.rowcount > 0:
-         print("professor deletado")
+         print("| professor deletado")
          time.sleep(3)
          return
       else:
-         print("nenhum professor com esse ID")
+         print("| nenhum professor com esse ID")
          time.sleep(3)
          return
    except Error as e:
-      print(f"erro ao deletar professor: {e}")
+      print(f"| erro ao deletar professor: {e}")
       time.sleep(5)
       return
    finally:
@@ -72,7 +72,7 @@ def deletarNota():
    try:
       id_deletar = int(input("digite o ID da nota: "))
    except ValueError:
-      print("digite um ID válido")
+      print("| digite um ID válido")
       time.sleep(3)
       return
 
@@ -81,15 +81,15 @@ def deletarNota():
       conn.commit()
 
       if cursor.rowcount > 0:
-         print("nota deletada")
+         print("| nota deletada")
          time.sleep(3)
          return
       else:
-         print("nenhuma nota com esse ID")
+         print("| nenhuma nota com esse ID")
          time.sleep(3)
          return
    except Error as e:
-      print(f"erro ao deletar nota: {e}")
+      print(f"| erro ao deletar nota: {e}")
       time.sleep(5)
       return
    finally:
