@@ -118,7 +118,7 @@ def adicionarNota():
       try:
          selectMateria = int(input("\ndigite o ID da matéria: "))
       except ValueError:
-         print("digite um ID válido")
+         print("| digite um ID válido")
          time.sleep(2)
          return
 
