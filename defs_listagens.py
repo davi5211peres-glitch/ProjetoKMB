@@ -156,6 +156,7 @@ def listaMedia():
    resultados = cursor.fetchall()
 
    if not resultados:
+      print("|")
       print("| sem aluno ou notas cadastradas")
       time.sleep(2)
       return
@@ -180,7 +181,8 @@ def listaTurmas():
     resultados = cursor.fetchall()
 
     for turma in resultados:
-        print(f"\n| ID da Turma: {turma[0]} | Turma: {turma[1]}")
+        print("|")
+        print(f"| ID da Turma: {turma[0]} | Turma: {turma[1]}")
 
     time.sleep(3)
     return
