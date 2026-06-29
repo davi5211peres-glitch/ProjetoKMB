@@ -16,11 +16,11 @@ def cadastroProfessor():
     idadeP = input("| qual a idade: ")
     materia = input("| qual é a materia que da aula: ")
 
-    sql = "INSERT INTO professores (nome, idade, materia, curso) VALUES (%s, %s, %s, %s)"
+    sql = "INSERT INTO professores (nome, idade, materia) VALUES (%s, %s, %s)"
 
     try:
-        if validarProf(professor,idadeP,materia,curso):
-            cursor.execute(sql, (professor,idadeP,materia,curso))
+        if validarProf(professor,idadeP,materia):
+            cursor.execute(sql, (professor,idadeP,materia))
             conn.commit()
             print("\n| 𝙿𝚁𝙾𝙵𝙴𝚂𝚂𝙾𝚁 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙾 𝙲𝙾𝙼 𝚂𝚄𝙲𝙴𝚂𝚂𝙾")
             print("| ====================")
