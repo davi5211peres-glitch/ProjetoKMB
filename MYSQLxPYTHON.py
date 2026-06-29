@@ -80,16 +80,10 @@ cursor.execute("""
         nome VARCHAR(100) NOT NULL,
         idade INT NOT NULL,
         fk_idmateria INT NOT NULL,
-        fk_idcurso INT NOT NULL,
         
         FOREIGN KEY (fk_idmateria)
             REFERENCES materias(id_materia)
-            ON DELETE CASCADE,
-        
-        FOREIGN KEY (fk_idcurso)
-            REFERENCES cursos(id_curso)
-            ON DELETE CASCADE
-            
+            ON DELETE CASCADE,            
     )
 """)
 
