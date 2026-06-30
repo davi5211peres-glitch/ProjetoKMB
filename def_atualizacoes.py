@@ -14,7 +14,7 @@ def mudarAluno():
     total_alunos = cursor.fetchone()[0]
 
     if total_alunos == 0:
-        print("\n| erro encontrado. não há alunos presentes")
+        print("| erro encontrado. não há alunos presentes")
         time.sleep(4)
         return
 
@@ -60,7 +60,7 @@ def mudarProf():
     total_profs = cursor.fetchone()[0]
 
     if total_profs == 0:
-        print("\n| erro encontrado. não há professores presentes")
+        print("| erro encontrado. não há professores presentes")
         time.sleep(4)
         return
 
@@ -87,7 +87,7 @@ def mudarProf():
     try:
         id_buscaC = int(input("| Digite o ID da matéria (vazio para não alterar): "))
     except ValueError:
-        print("Digite um ID válido")
+        print("| Digite um ID válido")
         time.sleep(2)
         return
     
@@ -118,7 +118,7 @@ def mudarNota():
     total_notas = cursor.fetchone()[0]
 
     if total_notas == 0:
-        print("\n| erro encontrado. não há notas cadastradas")
+        print("| erro encontrado. não há notas cadastradas")
         time.sleep(4)
         return
 
@@ -152,7 +152,7 @@ def mudarNota():
         cursor.execute("UPDATE notas SET fk_idmateria = %s WHERE id_nota = %s", (id_buscaM, id_buscaN))
 
     conn.commit()
-    print("\n| nota atualizada com sucesso")
+    print("| nota atualizada com sucesso")
     cursor.close()
     conn.close()
     return
