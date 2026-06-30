@@ -83,7 +83,7 @@ cursor.execute("""
         
         FOREIGN KEY (fk_idmateria)
             REFERENCES materias(id_materia)
-            ON DELETE CASCADE    
+            ON DELETE CASCADE
     )
 """)
 

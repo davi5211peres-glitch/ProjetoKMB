@@ -41,12 +41,9 @@ def listaProf():
          p.nome,
          p.idade,
          m.materia,
-         c.curso
       FROM professores p
       INNER JOIN materias m
          ON p.fk_idmateria = m.id_materia
-      INNER JOIN cursos c
-         ON p.fk_idcurso = c.id_curso
    """)
    resultados = cursor.fetchall()
 
@@ -55,8 +52,8 @@ def listaProf():
       time.sleep(3)
       return
 
-   for id_professor, nome, idade, materia, curso in resultados:
-      print(f"| ID: {id_professor} | Nome: {nome} | Idade: {idade} | Matéria: {materia} | Curso: {curso}")
+   for id_professor, nome, idade, materia in resultados:
+      print(f"| ID: {id_professor} | Nome: {nome} | Idade: {idade} | Matéria: {materia}")
 
    time.sleep(5)
    return
