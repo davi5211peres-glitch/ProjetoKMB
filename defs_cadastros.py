@@ -15,13 +15,12 @@ def cadastroProfessor():
     professor = input("| nome do professor: ")
     idadeP = input("| qual a idade: ")
     materia = input("| qual é a materia que da aula: ")
-    curso = input("| qual é o curso que ele da aula: ")
 
-    sql = "INSERT INTO professores (nome, idade, materia, curso) VALUES (%s, %s, %s, %s)"
+    sql = "INSERT INTO professores (nome, idade, materia) VALUES (%s, %s, %s)"
 
     try:
-        if validarProf(professor,idadeP,materia,curso):
-            cursor.execute(sql, (professor,idadeP,materia,curso))
+        if validarProf(professor,idadeP,materia):
+            cursor.execute(sql, (professor,idadeP,materia))
             conn.commit()
             print("\n| 𝙿𝚁𝙾𝙵𝙴𝚂𝚂𝙾𝚁 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙾 𝙲𝙾𝙼 𝚂𝚄𝙲𝙴𝚂𝚂𝙾")
             print("| ====================")
@@ -48,24 +47,33 @@ def cadastroAluno():
     listaCursos()
     id_curso = input("| qual é o ID do curso: ").lower()
 
+    listaTurmas()
+    id_turma = input("| qual é o ID da turma: ").lower()
+
     cursor.execute("SELECT id_curso FROM cursos WHERE id_curso = %s", (id_curso,))
     if not cursor.fetchone():
        print("| ID não existe")
        time.sleep(2)
        return
 
-    sql = "INSERT INTO alunos (nome, idade, fk_idcurso) VALUES (%s, %s, %s)"
+    cursor.execute("SELECT id_turma FROM turmas WHERE id_turma = %s", (id_turma,))
+    if not cursor.fetchone():
+       print("ID não existe")
+       time.sleep(2)
+       return
+
+    sql = "INSERT INTO alunos (nome, idade, fk_idcurso, fk_idturma) VALUES (%s, %s, %s, %s)"
 
     try:
-        if validation(nome,idade,id_curso):
-            cursor.execute(sql, (nome,idade,id_curso))
+        if validation(nome,idade,id_curso,id_turma):
+            cursor.execute(sql, (nome,idade,id_curso,id_turma))
             conn.commit()
             print("\n| aluno cadastrado com sucesso")
             time.sleep(3)
             return
     except Error as e:
-        print(f"erro no cadastro: {e}")
-        time.sleep(3)
+        print(f"| erro no cadastro: {e}")
+        time.sleep(3) 
         return
     finally:
        cursor.close()
@@ -74,8 +82,8 @@ def cadastroAluno():
 def adicionarNota():
    conn = conectar()
    cursor = conn.cursor()
-
-   print("\n| aviso! para cadastrar uma nota deve haver pelo menos um aluno e um professor cadastrado")
+   print("|")
+   print("| aviso! para cadastrar uma nota deve haver pelo menos um aluno e um professor cadastrado")
    time.sleep(2)
    prosseguir = input("| deseja prosseguir? (s/n): ")
 
@@ -92,7 +100,6 @@ def adicionarNota():
          return
       
       listaAluno()
-      time.sleep(2)
       
       try:
          selectAluno = int(input("\n| qual o ID do aluno que deseja adicionar nota?: "))
@@ -111,18 +118,19 @@ def adicionarNota():
       try:
          selectMateria = int(input("\ndigite o ID da matéria: "))
       except ValueError:
-         print("digite um ID válido")
+         print("| digite um ID válido")
          time.sleep(2)
          return
 
       cursor.execute("SELECT id_materia FROM materias WHERE id_materia = %s", (selectMateria,))
       if not cursor.fetchone():
-         print("ID não existe")
+         print("| ID não existe")
          time.sleep(2)
          return
 
       try:
-         nota = float(input("\n| digite a nota do aluno (ex: 8.5): "))
+         print("|")
+         nota = float(input("| digite a nota do aluno (ex: 8.5): "))
          if nota < 0 or nota > 10:
             print("| nota deve ser entre 0 e 10.")
             time.sleep(2)

@@ -1,6 +1,7 @@
 import time
+from MYSQLxPYTHON import conectar
 
-def validation(nome,idade,id_curso):
+def validation(nome,idade,id_curso,id_turma):
     """valida dados do aluno"""
 
     if nome.strip() == "":
@@ -14,6 +15,7 @@ def validation(nome,idade,id_curso):
         print("| erro encontrado (idade)")
         time.sleep(3)
         return False
+
 
     if idade <= 0:
         print("| erro encontrado (idade)")
@@ -43,7 +45,7 @@ def validation(nome,idade,id_curso):
     
     return True
  
-def validarProf(professor, idadeP, materia, cursoP):
+def validarProf(professor, idadeP, materia):
   
     if professor.strip() == "":
        print("| erro encontrado (nome)")
@@ -63,12 +65,6 @@ def validarProf(professor, idadeP, materia, cursoP):
         time.sleep(3)
         return False
  
-    if cursoP.strip() == "":
-       print("| erro encontrado (curso)")
-       time.sleep(3)
-       return False 
-    
-    
     if materia.strip() == "":
        print("| erro encontrado (materia)")
        time.sleep(3)
@@ -84,10 +80,5 @@ def validarProf(professor, idadeP, materia, cursoP):
         time.sleep(3)
         return False
 
-    if not cursoP.replace(" ", "").isalpha():
-        print("| erro encontrado (curso)")
-        time.sleep(3)
-        return False
-    
 
     return True

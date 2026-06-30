@@ -41,7 +41,7 @@ def deletarProfessor():
    try:
       id_deletar = int(input("| digite o ID do professor: "))
    except ValueError:
-      print("digite um ID válido")
+      print("| digite um ID válido")
       time.sleep(3)
       return
 
@@ -59,6 +59,37 @@ def deletarProfessor():
          return
    except Error as e:
       print(f"| erro ao deletar professor: {e}")
+      time.sleep(5)
+      return
+   finally:
+      cursor.close()
+      conn.close()
+
+def deletarNota():
+   conn = conectar()
+   cursor = conn.cursor()
+
+   try:
+      id_deletar = int(input("digite o ID da nota: "))
+   except ValueError:
+      print("| digite um ID válido")
+      time.sleep(3)
+      return
+
+   try:
+      cursor.execute("DELETE FROM notas WHERE id_nota = %s",(id_deletar,))
+      conn.commit()
+
+      if cursor.rowcount > 0:
+         print("| nota deletada")
+         time.sleep(3)
+         return
+      else:
+         print("| nenhuma nota com esse ID")
+         time.sleep(3)
+         return
+   except Error as e:
+      print(f"| erro ao deletar nota: {e}")
       time.sleep(5)
       return
    finally:
