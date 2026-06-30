@@ -64,6 +64,11 @@ def validarProf(professor, idadeP, id_materia):
         print("| erro encontrado (idade)")
         time.sleep(3)
         return False
+    
+    if id_materia.strip() == "":
+        print("| erro encontrado (materia)")
+        time.sleep(3)
+        return False
 
     if not professor.replace(" ", "").isalpha():
         print("| erro encontrado (nome)")

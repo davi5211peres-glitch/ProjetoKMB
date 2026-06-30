@@ -10,6 +10,14 @@ def mudarAluno():
     conn = conectar()
     cursor = conn.cursor()
 
+    cursor.execute("SELECT COUNT(*) FROM alunos")
+    total_alunos = cursor.fetchone()[0]
+
+    if total_alunos == 0:
+        print("\n| erro encontrado. não há alunos presentes")
+        time.sleep(4)
+        return
+
     listaAluno()
     try:
         id_busca = int(input("| Digite o ID do aluno que deseja mudar: "))
@@ -47,6 +55,15 @@ def mudarAluno():
 def mudarProf():
     conn = conectar()
     cursor = conn.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM professores")
+    total_profs = cursor.fetchone()[0]
+
+    if total_profs == 0:
+        print("\n| erro encontrado. não há professores presentes")
+        time.sleep(4)
+        return
+
 
     listaProf()
     try:
@@ -96,6 +113,14 @@ def mudarProf():
 def mudarNota():
     conn = conectar()
     cursor = conn.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM notas")
+    total_notas = cursor.fetchone()[0]
+
+    if total_notas == 0:
+        print("\n| erro encontrado. não há notas cadastradas")
+        time.sleep(4)
+        return
 
     listaNotas()
     try:
