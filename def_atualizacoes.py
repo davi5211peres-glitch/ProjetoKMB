@@ -115,9 +115,9 @@ def mudarNota():
     cursor = conn.cursor()
 
     cursor.execute("SELECT COUNT(*) FROM notas")
-    total_alunos = cursor.fetchone()[0]
+    total_notas = cursor.fetchone()[0]
 
-    if total_alunos == 0:
+    if total_notas == 0:
         print("\n| erro encontrado. não há notas cadastradas")
         time.sleep(4)
         return
