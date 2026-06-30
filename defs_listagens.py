@@ -40,7 +40,7 @@ def listaProf():
          p.id_professor,
          p.nome,
          p.idade,
-         m.materia,
+         m.materia
       FROM professores p
       INNER JOIN materias m
          ON p.fk_idmateria = m.id_materia
