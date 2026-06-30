@@ -65,7 +65,7 @@ cursor.execute("""
                
         FOREIGN KEY (fk_idcurso)
             REFERENCES cursos(id_curso)
-            ON DELETE CASCADE
+            ON DELETE CASCADE,
 
         FOREIGN KEY (fk_idturma)
             REFERENCES turmas(id_turma)
@@ -83,7 +83,7 @@ cursor.execute("""
         
         FOREIGN KEY (fk_idmateria)
             REFERENCES materias(id_materia)
-            ON DELETE CASCADE,            
+            ON DELETE CASCADE    
     )
 """)
 
