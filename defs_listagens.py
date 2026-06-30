@@ -66,9 +66,9 @@ def listaNotas():
 
    listaAluno()
    try:
-      selectAluno = int(input("Digite o ID do aluno: "))
+      selectAluno = int(input("| Digite o ID do aluno: "))
    except ValueError:
-      print("Digite um ID válido")
+      print("| Digite um ID válido")
       time.sleep(2)
       return
    
@@ -135,9 +135,9 @@ def listaMedia():
 
    listaAluno()
    try:
-      id_busca = int(input("Digite o ID do aluno: "))
+      id_busca = int(input("| Digite o ID do aluno: "))
    except ValueError():
-      print("Digite um ID válido")
+      print("| Digite um ID válido")
       time.sleep(2)
       return
    
@@ -161,7 +161,7 @@ def listaMedia():
          situacao = "recuperação"
       elif media < 4 and media >= 0:
          situacao = "reprovado"
-      print(f"\nID do aluno: {id_aluno} || Nome: {nome} || Média: {media} || Situação: {situacao}")
+      print(f"\n| ID do aluno: {id_aluno} | Nome: {nome} | Média: {media} | Situação: {situacao}")
 
    time.sleep(5)
    return

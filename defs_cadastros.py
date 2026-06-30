@@ -28,7 +28,7 @@ def cadastroProfessor():
             time.sleep(3)
             return
     except Error as e:
-        print(f"erro no cadastro: {e}")
+        print(f"| erro no cadastro: {e}")
         time.sleep(3)
         return
     finally:
@@ -50,7 +50,7 @@ def cadastroAluno():
 
     cursor.execute("SELECT id_curso FROM cursos WHERE id_curso = %s", (id_curso,))
     if not cursor.fetchone():
-       print("ID não existe")
+       print("| ID não existe")
        time.sleep(2)
        return
 
