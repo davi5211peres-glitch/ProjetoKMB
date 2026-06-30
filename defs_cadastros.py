@@ -60,13 +60,13 @@ def cadastroAluno():
 
     cursor.execute("SELECT id_curso FROM cursos WHERE id_curso = %s", (id_curso,))
     if not cursor.fetchone():
-       print("ID não existe")
+       print("| ID não existe")
        time.sleep(2)
        return
 
     cursor.execute("SELECT id_turma FROM turmas WHERE id_turma = %s", (id_turma,))
     if not cursor.fetchone():
-       print("ID não existe")
+       print("| ID não existe")
        time.sleep(2)
        return
 
@@ -76,7 +76,8 @@ def cadastroAluno():
         if validation(nome,idade,id_curso,id_turma):
             cursor.execute(sql, (nome,idade,id_curso,id_turma))
             conn.commit()
-            print("\n| aluno cadastrado com sucesso")
+            print("|")
+            print("| aluno cadastrado com sucesso")
             time.sleep(3)
             return
     except Error as e:
@@ -102,7 +103,8 @@ def adicionarNota():
       total_alunos = cursor.fetchone()[0]
 
       if total_alunos == 0:
-         print("\n| erro encontrado. não há alunos presentes")
+         print("|")
+         print("| erro encontrado. não há alunos presentes")
          print(f"| alunos cadastrados: {total_alunos}")
          time.sleep(4)
          return
@@ -118,13 +120,15 @@ def adicionarNota():
 
       cursor.execute("SELECT id_aluno FROM alunos WHERE id_aluno = %s", (selectAluno,))
       if not cursor.fetchone():
+         print("|")
          print("| ID não existe")
          time.sleep(2)
          return
       
       listaMaterias()
       try:
-         selectMateria = int(input("\ndigite o ID da matéria: "))
+         print("|")
+         selectMateria = int(input("| digite o ID da matéria: "))
       except ValueError:
          print("| digite um ID válido")
          time.sleep(2)

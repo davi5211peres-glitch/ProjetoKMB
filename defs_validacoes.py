@@ -15,9 +15,14 @@ def validation(nome,idade,id_curso,id_turma):
         print("| erro encontrado (idade)")
         time.sleep(3)
         return False
-        
 
-    if idade >= 21:
+
+    if idade <= 0:
+        print("| erro encontrado (idade)")
+        time.sleep(3)
+        return False
+
+    if idade >= 22:
         print("| erro encontrado (idade)")
         time.sleep(3)
         return False
@@ -37,23 +42,13 @@ def validation(nome,idade,id_curso,id_turma):
        print("| erro encontrado (curso)")
        time.sleep(3)
        return False
-
-    if id_turma.strip() == "":
-       print("| erro encontrado (curso)")
-       time.sleep(3)
-       return False
-
-    if not id_turma.isdigit():
-       print("| erro encontrado (curso)")
-       time.sleep(3)
-       return False
     
     return True
  
 def validarProf(professor, idadeP, id_materia):
   
     if professor.strip() == "":
-       print("| erro encontrado (professor)")
+       print("| erro encontrado (nome)")
        time.sleep(3)
        return
     
@@ -69,8 +64,7 @@ def validarProf(professor, idadeP, id_materia):
         print("| erro encontrado (idade)")
         time.sleep(3)
         return False
-    
-    if id_materia.strip() == "":
+    if materia.strip() == "":
        print("| erro encontrado (materia)")
        time.sleep(3)
        return False
@@ -84,5 +78,6 @@ def validarProf(professor, idadeP, id_materia):
         print("| erro encontrado (materia)")
         time.sleep(3)
         return False
-    
+
+
     return True

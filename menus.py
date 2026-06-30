@@ -90,7 +90,7 @@ def menuSecretaria():
       print("| 9 - ver lista de matérias")
       print("| 0 - voltar para a tela de login")
 
-      escolha = input("|    - qual sera sua escolha: ")
+      escolha = input("|   - qual sera sua escolha: ")
 
       if escolha == "1":
          listaAluno()
