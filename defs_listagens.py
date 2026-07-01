@@ -14,9 +14,12 @@ def listaAluno():
             a.nome,
             a.idade,
             c.curso
+            t.turma
          FROM alunos a
          INNER JOIN cursos c
             ON a.fk_idcurso = c.id_curso
+         INNER JOIN turmas t
+            ON a.fk_idturma = t.id_turma
     """)
     resultados = cursor.fetchall()
 
