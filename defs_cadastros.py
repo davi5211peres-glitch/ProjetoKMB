@@ -103,9 +103,7 @@ def adicionarNota():
       total_alunos = cursor.fetchone()[0]
 
       if total_alunos == 0:
-         print("|")
          print("| erro encontrado. não há alunos presentes")
-         print(f"| alunos cadastrados: {total_alunos}")
          time.sleep(4)
          return
       

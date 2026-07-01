@@ -7,6 +7,14 @@ def deletarAluno():
    conn = conectar()
    cursor = conn.cursor()
 
+   cursor.execute("SELECT COUNT(*) FROM alunos")
+   total_alunos = cursor.fetchone()[0]
+
+   if total_alunos == 0:
+        print("| erro encontrado. não há alunos presentes")
+        time.sleep(4)
+        return
+
    try:
       id_deletar = int(input("| digite o ID do aluno: "))
    except ValueError:
@@ -38,6 +46,14 @@ def deletarProfessor():
    conn = conectar()
    cursor = conn.cursor()
 
+   cursor.execute("SELECT COUNT(*) FROM professores")
+   total_profs = cursor.fetchone()[0]
+
+   if total_profs == 0:
+        print("| erro encontrado. não há professores presentes")
+        time.sleep(4)
+        return
+
    try:
       id_deletar = int(input("| digite o ID do professor: "))
    except ValueError:
@@ -68,6 +84,14 @@ def deletarProfessor():
 def deletarNota():
    conn = conectar()
    cursor = conn.cursor()
+
+   cursor.execute("SELECT COUNT(*) FROM notas")
+   total_notas = cursor.fetchone()[0]
+
+   if total_notas == 0:
+        print("| erro encontrado. não há notas cadastradas")
+        time.sleep(4)
+        return
 
    try:
       id_deletar = int(input("digite o ID da nota: "))

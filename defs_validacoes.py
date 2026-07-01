@@ -54,7 +54,6 @@ def validarProf(professor, idadeP, id_materia):
     
     try:
         idadeP = int(idadeP)
-
     except ValueError:
         print("| erro encontrado (idade)")
         time.sleep(3)
@@ -65,6 +64,11 @@ def validarProf(professor, idadeP, id_materia):
         time.sleep(3)
         return False
     
+    if idadeP >= 100:
+        print("| erro encontrado (idade)")
+        time.sleep(3)
+        return False
+
     if id_materia.strip() == "":
         print("| erro encontrado (materia)")
         time.sleep(3)

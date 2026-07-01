@@ -83,14 +83,6 @@ def mudarProf():
         time.sleep(2)
         return
     
-    listaCursos()
-    try:
-        id_buscaC = int(input("| Digite o ID da matéria (vazio para não alterar): "))
-    except ValueError:
-        print("| Digite um ID válido")
-        time.sleep(2)
-        return
-    
     if novo_nome:
         cursor.execute("UPDATE professores SET nome = %s WHERE id_professor = %s", (novo_nome, id_buscaP))
 
@@ -99,9 +91,6 @@ def mudarProf():
 
     if id_buscaM:
         cursor.execute("UPDATE professores SET fk_idmateria = %s WHERE id_professor = %s", (id_buscaM, id_buscaP))
-
-    if id_buscaC:
-        cursor.execute("UPDATE professores SET fk_idcurso = %s WHERE id_professor = %s", (id_buscaC, id_buscaP))
 
     conn.commit()
     print("\n| professor atualizado com sucesso")
