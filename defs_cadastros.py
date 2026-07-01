@@ -30,8 +30,8 @@ def cadastroProfessor():
         if validarProf(professor,idadeP,id_materia):
             cursor.execute(sql, (professor,idadeP,id_materia))
             conn.commit()
-            print("\n| 𝙿𝚁𝙾𝙵𝙴𝚂𝚂𝙾𝚁 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙾 𝙲𝙾𝙼 𝚂𝚄𝙲𝙴𝚂𝚂𝙾")
-            print("| ====================")
+            print("| 𝙿𝚁𝙾𝙵𝙴𝚂𝚂𝙾𝚁 𝙲𝙰𝙳𝙰𝚂𝚃𝚁𝙰𝙳𝙾 𝙲𝙾𝙼 𝚂𝚄𝙲𝙴𝚂𝚂𝙾")
+            print("|====================")
             time.sleep(3)
             return
     except Error as e:

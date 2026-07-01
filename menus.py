@@ -24,18 +24,17 @@ from mysql.connector import Error
 def menuProf():
     while True:
      os.system('cls' if os.name == 'nt' else 'clear')
-     print("\n|====================")
-     print("|𝙱𝙴𝙼 𝚅𝙸𝙽𝙳𝙾 𝙰𝙾 𝚂𝙸𝚂𝚃𝙴𝙼𝙰")
-     print("|====================")
-
+     print("|====================|")
+     print("|𝙱𝙴𝙼 𝚅𝙸𝙽𝙳𝙾 𝙰𝙾 𝚂𝙸𝚂𝚃𝙴𝙼𝙰|")
+     print("|====================|")
+     print("|")
      print("| 1 - mudar nota")
      print("| 2 - adicionar nota")
      print("| 3 - deletar nota")
      print("| 4 - ver a lista de alunos")
      print("| 5 - ver a lista de notas")
      print("| 6 - ver a média de um aluno")
-     print("| 7 - voltar para a tela de login")
-     print("| 0 - sair do sistema")
+     print("| 0 - voltar para a tela de login")
 
      escolha = input("|   - qual sera sua escolha: ")
 
@@ -57,17 +56,13 @@ def menuProf():
      elif escolha == "6":
         listaMedia()
 
-     elif escolha == "7":
+     elif escolha == "0":
         print("| voltando...")
         time.sleep(2)
         login()
 
-     elif escolha == "0":
-        print("| saindo...")
-        time.sleep(2)
-        break
      else:
-        print("| erro\n")
+        print("| erro")
         time.sleep(2)
 
 
@@ -75,9 +70,10 @@ def menuProf():
 def menuSecretaria():
    while True:
       os.system('cls' if os.name == 'nt' else 'clear')
-      print("\n|====================")
-      print("|𝙱𝙴𝙼 𝚅𝙸𝙽𝙳𝙾 𝙰𝙾 𝚂𝙸𝚂𝚃𝙴𝙼𝙰")
-      print("|====================\n")
+      print("|====================|")
+      print("|𝙱𝙴𝙼 𝚅𝙸𝙽𝙳𝙾 𝙰𝙾 𝚂𝙸𝚂𝚃𝙴𝙼𝙰|")
+      print("|====================|")
+      print("|")
       print("| 1 - deletar aluno do sistema")
       print("| 2 - deletar professor do sistema")
       print("| 3 - cadastrar aluno")
@@ -134,18 +130,27 @@ def login():
    print("|==========LOGIN==========")
    print("|=========================")
 
-   usuario = input("| usuario: ").lower()
-   senha = input("| senha: ")
-
-   if usuario == "professor":
-      menuProf()
-
-   elif usuario == "secretaria":
-      menuSecretaria()
-
-
-   else:
-      print("| usuario não encontrado")
+   escolha = input("| você quer sair do sistema?(s/n): ").lower()
+   if escolha == "s" or escolha == "sim":
+      print("| saindo...")
       time.sleep(2)
-      continue
+      break
+   elif escolha == "n" or escolha == "nao":
+      usuario = input("| usuario: ").lower()
+      senha = input("| senha: ")
 
+      if usuario == "professor":
+         menuProf()
+
+      elif usuario == "secretaria":
+         menuSecretaria()
+
+
+      else:
+         print("| usuario não encontrado")
+         time.sleep(2)
+         continue
+   else:
+         print("| por favor, digite apenas s ou n")
+         time.sleep(2)
+         continue
