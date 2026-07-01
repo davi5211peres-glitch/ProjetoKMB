@@ -13,7 +13,7 @@ def listaAluno():
             a.id_aluno,
             a.nome,
             a.idade,
-            c.curso
+            c.curso,
             t.turma
          FROM alunos a
          INNER JOIN cursos c
@@ -28,8 +28,8 @@ def listaAluno():
        time.sleep(3)
        return
 
-    for id_aluno, nome, idade, curso in resultados:
-       print(f"| ID: {id_aluno} | Nome: {nome} | Idade: {idade} | Curso: {curso}")
+    for id_aluno, nome, idade, curso, turma in resultados:
+       print(f"| ID: {id_aluno} | Nome: {nome} | Idade: {idade} | Curso: {curso} | Turma: {turma}")
 
     time.sleep(5)
     return
@@ -84,7 +84,7 @@ def listaNotas():
          ON n.fk_idaluno = a.id_aluno
       INNER JOIN materias m
          ON n.fk_idmateria = m.id_materia
-      WHERE id_aluno = %s
+      WHERE a.id_aluno = %s
    """, (selectAluno,))
 
    resultados = cursor.fetchall()
@@ -93,8 +93,8 @@ def listaNotas():
       time.sleep(3)
       return
    
-   for id_nota, nota, materia, aluno in resultados:
-      print(f"| ID: {id_nota} | Nota: {nota} | Matéria: {materia} | Aluno: {aluno}")
+   for id_nota, aluno, nota, materia in resultados:
+      print(f"| ID: {id_nota} | Alunos: {aluno} | Nota: {nota} | Matéria: {materia}")
 
    time.sleep(5)
    return
@@ -168,7 +168,8 @@ def listaMedia():
          situacao = "recuperação"
       elif media < 4 and media >= 0:
          situacao = "reprovado"
-      print(f"\n| ID do aluno: {id_aluno} | Nome: {nome} | Média: {media} | Situação: {situacao}")
+      print(f"| ID do aluno: {id_aluno} | Nome: {nome} | Média: {media} | Situação: {situacao}")
+      print("|")
 
    time.sleep(5)
    return
@@ -181,7 +182,6 @@ def listaTurmas():
     resultados = cursor.fetchall()
 
     for turma in resultados:
-        print("|")
         print(f"| ID da Turma: {turma[0]} | Turma: {turma[1]}")
 
     time.sleep(3)
