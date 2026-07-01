@@ -46,7 +46,6 @@ def menuProf():
          adicionarNota()
 
      elif escolha == "3":
-         listaNotas()
          deletarNota()
      
      elif escolha == "4":
@@ -93,11 +92,9 @@ def menuSecretaria():
       escolha = input("|   - qual sera sua escolha: ")
 
       if escolha == "1":
-         listaAluno()
          deletarAluno()
 
       elif escolha == "2":
-         listaProf()
          deletarProfessor()
 
       elif escolha == "3":

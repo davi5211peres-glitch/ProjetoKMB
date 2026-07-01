@@ -2,6 +2,7 @@ import time
 import mysql.connector
 from mysql.connector import Error
 from MYSQLxPYTHON import *
+from defs_listagens import *
 
 def deletarAluno():
    conn = conectar()
@@ -15,6 +16,7 @@ def deletarAluno():
         time.sleep(4)
         return
 
+   listaAluno()
    try:
       id_deletar = int(input("| digite o ID do aluno: "))
    except ValueError:
@@ -54,6 +56,7 @@ def deletarProfessor():
         time.sleep(4)
         return
 
+   listaProf()
    try:
       id_deletar = int(input("| digite o ID do professor: "))
    except ValueError:
@@ -93,6 +96,7 @@ def deletarNota():
         time.sleep(4)
         return
 
+   listaNotas()
    try:
       id_deletar = int(input("digite o ID da nota: "))
    except ValueError:
