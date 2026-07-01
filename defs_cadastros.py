@@ -92,7 +92,7 @@ def adicionarNota():
    conn = conectar()
    cursor = conn.cursor()
    print("|")
-   print("| aviso! para cadastrar uma nota deve haver pelo menos um aluno e um professor cadastrado")
+   print("| aviso! para cadastrar uma nota deve haver pelo menos um aluno cadastrado")
    time.sleep(2)
    prosseguir = input("| deseja prosseguir? (s/n): ")
 
