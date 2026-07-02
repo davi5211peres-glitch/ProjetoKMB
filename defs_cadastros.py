@@ -110,7 +110,8 @@ def adicionarNota():
       listaAluno()
       
       try:
-         selectAluno = int(input("\n| qual o ID do aluno que deseja adicionar nota?: "))
+          print("|")
+         selectAluno = int(input("| qual o ID do aluno que deseja adicionar nota?: "))
       except ValueError:
          print("| digite um ID válido")
          time.sleep(2)
