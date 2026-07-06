@@ -8,8 +8,8 @@ def deletarAluno():
    conn = conectar()
    cursor = conn.cursor()
 
-   cursor.execute("SELECT COUNT(*) FROM alunos")
-   total_alunos = cursor.fetchone()[0]
+   cursor.execute("SELECT COUNT(*) FROM alunos")#SELECT CONTE vai contar quantos alunos tem
+   total_alunos = cursor.fetchone()[0]#busca um item na lista
 
    if total_alunos == 0:
         print("| erro encontrado. não há alunos presentes")
@@ -19,13 +19,13 @@ def deletarAluno():
    listaAluno()
    try:
       id_deletar = int(input("| digite o ID do aluno: "))
-   except ValueError:
+   except ValueError:#se nao for int vai dar erro
       print("| digite um ID válido")
       time.sleep(3)
       return
-
+#cursor.execute executa o comando entre () no mysql
    try:
-      cursor.execute("DELETE FROM alunos WHERE id_aluno = %s",(id_deletar,))
+      cursor.execute("DELETE FROM alunos WHERE id_aluno = %s",(id_deletar,))#DELETA da tabela alunos ONDE id do aluno = id_deletar
       conn.commit()
 
       if cursor.rowcount > 0:
@@ -36,18 +36,18 @@ def deletarAluno():
          print("| nenhum aluno com esse ID")
          time.sleep(3)
          return
-   except Error as e:
+   except Error as e:#vai pegar erros especificamente do mysql
       print(f"| erro ao deletar aluno: {e}")
       time.sleep(5)
       return
-   finally:
+   finally:#se entrar tanto no try, tanto no except, ele vai passar pelo finally
       cursor.close()
       conn.close()
 
 def deletarProfessor():
    conn = conectar()
    cursor = conn.cursor()
-
+#pega a conexão com o banco e chama o cursor
    cursor.execute("SELECT COUNT(*) FROM professores")
    total_profs = cursor.fetchone()[0]
 
@@ -57,7 +57,7 @@ def deletarProfessor():
         return
 
    listaProf()
-   try:
+   try:#o try tenta o valor int, se não for, entra no except
       id_deletar = int(input("| digite o ID do professor: "))
    except ValueError:
       print("| digite um ID válido")
@@ -65,10 +65,10 @@ def deletarProfessor():
       return
 
    try:
-      cursor.execute("DELETE FROM professores WHERE id_professor = %s",(id_deletar,))
+      cursor.execute("DELETE FROM professores WHERE id_professor = %s",(id_deletar,))#DELETA da tabela professores ONDE id do professor = id_deletar
       conn.commit()
 
-      if cursor.rowcount > 0:
+      if cursor.rowcount > 0:#rowcount conta quantas linhas foram alteradas
          print("| professor deletado")
          time.sleep(3)
          return
@@ -88,7 +88,7 @@ def deletarNota():
    conn = conectar()
    cursor = conn.cursor()
 
-   cursor.execute("SELECT COUNT(*) FROM notas")
+   cursor.execute("SELECT COUNT(*) FROM notas")#vai contar a quantas notas tem
    total_notas = cursor.fetchone()[0]
 
    if total_notas == 0:
